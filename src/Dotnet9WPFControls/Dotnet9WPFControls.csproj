@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+	  <Company>Dotnet9.com</Company>
+	  <Authors>沙漠尽头的狼</Authors>
+	  <PackageIcon>logo.png</PackageIcon>
+	  <Version>0.1.0</Version>
+	  <Description>常年积累的一个自定义WPF控件库</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="favicon.ico" />
+    <None Remove="logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="favicon.ico" />
+    <Resource Include="logo.png" />
+  </ItemGroup>
+
+</Project>

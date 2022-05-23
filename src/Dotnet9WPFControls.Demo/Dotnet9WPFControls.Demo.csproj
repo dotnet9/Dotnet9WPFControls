@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+	  <PackageIcon>logo.png</PackageIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="favicon.ico" />
+    <None Remove="Images\background.jpeg" />
+    <None Remove="Images\swift.jpg" />
+    <None Remove="logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Dotnet9WPFControls\Dotnet9WPFControls.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="favicon.ico" />
+    <Resource Include="Images\background.jpeg" />
+    <Resource Include="Images\swift.jpg" />
+    <Resource Include="logo.png" />
+  </ItemGroup>
+
+</Project>
