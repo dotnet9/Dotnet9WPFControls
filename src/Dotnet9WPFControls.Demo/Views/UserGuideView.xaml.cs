@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using Dotnet9WPFControls.Controls;
+using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Dotnet9WPFControls.Demo.Views
@@ -8,16 +10,20 @@ namespace Dotnet9WPFControls.Demo.Views
         public UserGuideView()
         {
             InitializeComponent();
+
+            Loaded += UserGuideView_Loaded;
         }
 
-        private void DragMove_MouseDown(object sender, MouseButtonEventArgs e)
+        private void UserGuideView_Loaded(object sender, RoutedEventArgs e)
         {
-            try
+            GuideWindow.ShowGuideBox(new List<object> { BtnShowGuide });
+        }
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
             {
                 DragMove();
-            }
-            catch
-            {
             }
         }
 

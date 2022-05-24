@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Dotnet9WPFControls.Controls.Helpers;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -60,12 +61,12 @@ namespace Dotnet9WPFControls.Controls
             Point point = tagetControl.TransformToAncestor(GetWindow(tagetControl)!)
                 .Transform(new Point(0, 0)); //获取控件坐标点
 
-            RectangleGeometry rg = new RectangleGeometry();
+            RectangleGeometry rg = new();
             rg.Rect = new Rect(0, 0, Width, Height);
             borGeometry = Geometry.Combine(borGeometry, rg, GeometryCombineMode.Union, null);
             bor.Clip = borGeometry;
 
-            RectangleGeometry rg1 = new RectangleGeometry();
+            RectangleGeometry rg1 = new();
             rg1.RadiusX = 3;
             rg1.RadiusY = 3;
             rg1.Rect = new Rect(point.X - 5, point.Y - 5, tagetControl.ActualWidth + 10,
@@ -74,7 +75,7 @@ namespace Dotnet9WPFControls.Controls
 
             bor.Clip = borGeometry;
 
-            HintUc hit = new HintUc(this, point, tagetControl, guide);
+            HintUc hit = new(this, point, tagetControl, guide);
             hit.NextHintEvent -= Hit_nextHintEvent;
             hit.NextHintEvent += Hit_nextHintEvent;
             canvas.Children.Add(hit);
@@ -97,15 +98,15 @@ namespace Dotnet9WPFControls.Controls
 
         public static void ShowGuideBox(List<object> guideList)
         {
-            List<GuideInfo> list = new List<GuideInfo>();
+            List<GuideInfo> list = new();
             foreach (FrameworkElement obj in guideList.OfType<FrameworkElement>())
             {
-                GuideInfo guide = (GuideInfo)obj.Tag!;
+                GuideInfo guide = GuideHelper.GetGuideInfo(obj)!;
                 guide.Uc = obj;
                 list.Add(guide);
             }
 
-            GuideWindow win = new GuideWindow(GetWindow(list[0].Uc)!, list);
+            GuideWindow win = new(GetWindow(list[0].Uc)!, list);
 
             win.ShowDialog();
         }

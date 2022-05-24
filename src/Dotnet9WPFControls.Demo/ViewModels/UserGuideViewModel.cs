@@ -8,99 +8,52 @@ namespace Dotnet9WPFControls.Demo.ViewModels
 {
     public class UserGuideViewModel : BindableBase
     {
-        private GuideInfo? _beautyImageGuide;
-
-        private GuideInfo? _bottomCenterBtnGuide;
-
-        private GuideInfo? _editMenuItemGuide;
-
-        private GuideInfo? _fileMenuItemGuide;
-
-        private GuideInfo? _leftBottomBtnGuide;
-
-        private GuideInfo? _leftCenterBtnGuide;
-
-        private GuideInfo? _leftTopBtnGuide;
-
-        private GuideInfo? _rightBottomBtnGuide;
-
-        private GuideInfo? _rightCenterBtnGuide;
+        private GuideInfo? _borderSecurityGuide;
+        private GuideInfo? _borderWalletOverviewGuide;
+        private GuideInfo? _btnCloseGuide;
+        private GuideInfo? _btnNotifactionGuide;
+        private GuideInfo? _btnPayGuideGuide;
+        private GuideInfo? _btnShowGuide;
+        private GuideInfo? _btnWalletGuide;
         private ICommand? _showGuideCommand;
-
-        private ICommand? _showOneGuideCommand;
-
-        private GuideInfo? _topCenterBtnGuide;
-
-        private GuideInfo? _topRightBtnGuide;
 
         public ICommand ShowGuideCommand =>
             _showGuideCommand ??= new DelegateCommand<List<object>>(GuideWindow.ShowGuideBox);
 
-        public ICommand ShowOneGuideCommand =>
-            _showOneGuideCommand ??=
-                new DelegateCommand<object>(x => GuideWindow.ShowGuideBox(new List<object> {x}));
-
-        public GuideInfo FileMenuItemGuide =>
-            _fileMenuItemGuide ??= new GuideInfo
+        public GuideInfo BtnShowGuide =>
+            _btnShowGuide ??= new GuideInfo
             {
-                Title = "文件菜单引导", Content = "创建文件、打开文件等操作点击这里", ButtonContent = "我知道了"
+                Title = "点击这里显示新手引导", Content = "不知道如何操作那就点击这里查看新手引导吧", ButtonContent = "我知道了"
             };
 
-        public GuideInfo EditMenuItemGuide =>
-            _editMenuItemGuide ??= new GuideInfo
+        public GuideInfo BtnWalletGuide =>
+            _btnWalletGuide ??= new GuideInfo { Title = "钱包详情在这", Content = "查看钱包余额、最近消费记录", ButtonContent = "我知道了" };
+
+        public GuideInfo BtnNotifactionGuide =>
+            _btnNotifactionGuide ??= new GuideInfo
             {
-                Title = "编辑菜单引导", Content = "复制、切换、粘贴等操作在这里哦", ButtonContent = "我知道了"
+                Title = "实时消费提醒", Content = "监控实时消息、历史消费信息", ButtonContent = "我知道了"
             };
 
-        public GuideInfo LeftTopBtnGuide =>
-            _leftTopBtnGuide ??= new GuideInfo
+        public GuideInfo BorderWalletOverviewGuide =>
+            _borderWalletOverviewGuide ??= new GuideInfo
             {
-                Title = "控件在窗体左上角时", Content = "引导框左上角显示在该控件左下角", ButtonContent = "我知道了"
+                Title = "账户概览信息", Content = "消费、支持、余额实时显示在这里", ButtonContent = "我知道了"
             };
 
-        public GuideInfo TopCenterBtnGuide =>
-            _topCenterBtnGuide ??= new GuideInfo
+        public GuideInfo BtnPayGuide =>
+            _btnPayGuideGuide ??= new GuideInfo
             {
-                Title = "控件在窗体上中时", Content = "引导框左上角显示在该控件左下角", ButtonContent = "我知道了"
+                Title = "交易在这里", Content = "输入对方钱包ID，然后点击支付即可完成交易", ButtonContent = "我知道了"
             };
 
-        public GuideInfo TopRightBtnGuide =>
-            _topRightBtnGuide ??= new GuideInfo
+        public GuideInfo BorderSecurityGuide =>
+            _borderSecurityGuide ??= new GuideInfo
             {
-                Title = "控件在窗体右上时", Content = "引导框右上角显示在该控件右下角", ButtonContent = "我知道了"
+                Title = "账户安全", Content = "这里修改您的安全信息，要慎重哦", ButtonContent = "我知道了"
             };
 
-        public GuideInfo LeftCenterBtnGuide =>
-            _leftCenterBtnGuide ??= new GuideInfo
-            {
-                Title = "控件在窗体左侧中间时", Content = "引导框左上角显示在该控件左下角", ButtonContent = "我知道了"
-            };
-
-        public GuideInfo BeautyImageGuide =>
-            _beautyImageGuide ??= new GuideInfo {Title = "美女在这", Content = "点击这里显示引导", ButtonContent = "我点点点"};
-
-        public GuideInfo RightCenterBtnGuide =>
-            _rightCenterBtnGuide ??= new GuideInfo
-            {
-                Title = "控件在窗体右侧中间时", Content = "引导框右上角显示在该控件右下角", ButtonContent = "我知道了"
-            };
-
-        public GuideInfo LeftBottomBtnGuide =>
-            _leftBottomBtnGuide ??= new GuideInfo
-            {
-                Title = "控件在窗体左下角时", Content = "引导框左下角显示在该控件左上角", ButtonContent = "我知道了"
-            };
-
-        public GuideInfo BottomCenterBtnGuide =>
-            _bottomCenterBtnGuide ??= new GuideInfo
-            {
-                Title = "控件在窗体下侧中间时", Content = "引导框左下角显示在该控件左上角", ButtonContent = "我知道了"
-            };
-
-        public GuideInfo RightBottomBtnGuide =>
-            _rightBottomBtnGuide ??= new GuideInfo
-            {
-                Title = "控件在窗体右下角时", Content = "引导框右下角显示在该控件左上角", ButtonContent = "我知道了"
-            };
+        public GuideInfo BtnCloseGuide =>
+            _btnCloseGuide ??= new GuideInfo { Title = "点击这里关闭", Content = "暂时离别", ButtonContent = "我知道了" };
     }
 }
