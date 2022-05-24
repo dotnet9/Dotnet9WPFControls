@@ -5,18 +5,20 @@ using System.Windows.Media;
 // ReSharper disable once CheckNamespace
 namespace Dotnet9WPFControls.Controls
 {
+    [TemplatePart(Name = PartBtnClose, Type = typeof(Button))]
     [TemplatePart(Name = PartBackgroundViewbox, Type = typeof(Viewbox))]
     [TemplatePart(Name = PartBtnNext, Type = typeof(Button))]
     public class HintUc : Control
     {
         public delegate void NextHintDelegate();
 
+        private const string PartBtnClose = "PART_Btn_Close";
         private const string PartBackgroundViewbox = "PART_Background_Viewbox";
         private const string PartBtnNext = "PART_Btn_Next";
 
         public static readonly DependencyProperty GridMarginProperty =
             DependencyProperty.Register(nameof(GridMargin), typeof(Thickness), typeof(HintUc),
-                new PropertyMetadata(new Thickness(20, 30, 20, 20)));
+                new PropertyMetadata(new Thickness(16, 26, 16, 16)));
 
         public static readonly DependencyProperty TitleProperty =
             DependencyProperty.Register(nameof(Title), typeof(string), typeof(HintUc), new PropertyMetadata(null));
@@ -24,15 +26,16 @@ namespace Dotnet9WPFControls.Controls
         public static readonly DependencyProperty ContentProperty =
             DependencyProperty.Register(nameof(Content), typeof(string), typeof(HintUc), new PropertyMetadata(null));
 
-        public static readonly DependencyProperty NextContentProperty =
-            DependencyProperty.Register(nameof(NextContent), typeof(string), typeof(HintUc),
+        public static readonly DependencyProperty ButtonContentProperty =
+            DependencyProperty.Register(nameof(ButtonContent), typeof(string), typeof(HintUc),
                 new PropertyMetadata("下一步"));
 
         private readonly Window _ownerWindow;
 
         private readonly FrameworkElement _targetControl;
-
         private Viewbox? _backgroundViewbox;
+
+        private Button? _btnClose;
         private Button? _btnNext;
         private Point _targetControlPoint;
 
@@ -59,7 +62,7 @@ namespace Dotnet9WPFControls.Controls
 
             Title = guide.Title;
             Content = guide.Content;
-            NextContent = guide.ButtonContent;
+            ButtonContent = guide.ButtonContent;
 
             Loaded += HintUC_Loaded;
         }
@@ -76,10 +79,10 @@ namespace Dotnet9WPFControls.Controls
             set => SetValue(ContentProperty, value);
         }
 
-        public string? NextContent
+        public string ButtonContent
         {
-            get => (string?)GetValue(NextContentProperty);
-            set => SetValue(NextContentProperty, value);
+            get => (string)GetValue(ButtonContentProperty);
+            set => SetValue(ButtonContentProperty, value);
         }
 
         public Thickness GridMargin
@@ -112,9 +115,9 @@ namespace Dotnet9WPFControls.Controls
                 Canvas.SetLeft(this, leftOfTarget);
                 Canvas.SetTop(this, topOfTarget - ActualHeight);
 
-                ScaleTransform scaleTransform = new ScaleTransform {ScaleY = -1};
+                ScaleTransform scaleTransform = new() {ScaleY = -1};
                 _backgroundViewbox!.RenderTransform = scaleTransform;
-                GridMargin = new Thickness(20, 20, 20, 30);
+                GridMargin = new Thickness(16, 16, 16, 26);
             }
             // 3、提示框右侧会显示在蒙版外
             else if (leftOfTarget + ActualWidth > _ownerWindow.Width &&
@@ -123,7 +126,7 @@ namespace Dotnet9WPFControls.Controls
                 Canvas.SetLeft(this, rightOfTarget - ActualWidth);
                 Canvas.SetTop(this, bottomOfTarget);
 
-                ScaleTransform scaleTransform = new ScaleTransform {ScaleX = -1};
+                ScaleTransform scaleTransform = new() {ScaleX = -1};
                 _backgroundViewbox!.RenderTransform = scaleTransform;
             }
             // 4、提示框右侧和下方会显示在蒙版外
@@ -133,9 +136,9 @@ namespace Dotnet9WPFControls.Controls
                 Canvas.SetLeft(this, rightOfTarget - ActualWidth);
                 Canvas.SetTop(this, topOfTarget - ActualHeight);
 
-                ScaleTransform scaleTransform = new ScaleTransform {ScaleX = -1, ScaleY = -1};
+                ScaleTransform scaleTransform = new() {ScaleX = -1, ScaleY = -1};
                 _backgroundViewbox!.RenderTransform = scaleTransform;
-                GridMargin = new Thickness(20, 20, 20, 30);
+                GridMargin = new Thickness(16, 16, 16, 26);
             }
             else //怎么放都不行，就按第一种放吧
             {
@@ -153,13 +156,24 @@ namespace Dotnet9WPFControls.Controls
                 _btnNext.Click -= btn_next_Click;
             }
 
+            _btnClose = GetTemplateChild(PartBtnClose) as Button;
             _backgroundViewbox = GetTemplateChild(PartBackgroundViewbox) as Viewbox;
             _btnNext = GetTemplateChild(PartBtnNext) as Button;
+
+            if (_btnClose != null)
+            {
+                _btnClose.Click += _btnClose_Click;
+            }
 
             if (_btnNext != null)
             {
                 _btnNext.Click += btn_next_Click;
             }
+        }
+
+        private void _btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Window.GetWindow(this)?.Close();
         }
 
         protected override void OnRender(DrawingContext drawingContext)

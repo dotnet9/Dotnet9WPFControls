@@ -1,20 +1,25 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
 
     <Style x:Key="menuButton" TargetType="Button">
         <Setter Property="Height" Value="47" />
         <Setter Property="Width" Value="217" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="#f0f0f0" />
-        <Setter Property="Margin" Value="0 0 0 0" />
+        <Setter Property="Margin" Value="0,0,0,0" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="HorizontalAlignment" Value="Right" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Background="{TemplateBinding Background}" CornerRadius="20" Padding="20 0 20 0"
-                            BorderThickness="3 0 0 0" BorderBrush="Transparent">
+                    <Border
+                        Padding="20,0,20,0"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="Transparent"
+                        BorderThickness="3,0,0,0"
+                        CornerRadius="20">
                         <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Center" />
                     </Border>
                 </ControlTemplate>
@@ -27,13 +32,16 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Button}">
-                            <Border Background="{TemplateBinding Background}" CornerRadius="20" Padding="20 0 20 0"
-                                    BorderThickness="3 0 0 0">
+                            <Border
+                                Padding="20,0,20,0"
+                                Background="{TemplateBinding Background}"
+                                BorderThickness="3,0,0,0"
+                                CornerRadius="20">
                                 <Border.BorderBrush>
                                     <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                                        <GradientStop Color="#D489FF" Offset="0" />
-                                        <GradientStop Color="#7985FF" Offset="0.5" />
-                                        <GradientStop Color="#6AD8FD" Offset="1" />
+                                        <GradientStop Offset="0" Color="#D489FF" />
+                                        <GradientStop Offset="0.5" Color="#7985FF" />
+                                        <GradientStop Offset="1" Color="#6AD8FD" />
                                     </LinearGradientBrush>
                                 </Border.BorderBrush>
                                 <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Center" />
@@ -50,19 +58,25 @@
     </Style>
 
 
-    <Style x:Key="activeMenuButton" TargetType="Button" BasedOn="{StaticResource menuButton}">
+    <Style
+        x:Key="activeMenuButton"
+        BasedOn="{StaticResource menuButton}"
+        TargetType="Button">
         <Setter Property="Background" Value="#21203b" />
         <Setter Property="Foreground" Value="#e9e9e9" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Background="{TemplateBinding Background}" CornerRadius="20" Padding="20 0 20 0"
-                            BorderThickness="3 0 0 0">
+                    <Border
+                        Padding="20,0,20,0"
+                        Background="{TemplateBinding Background}"
+                        BorderThickness="3,0,0,0"
+                        CornerRadius="20">
                         <Border.BorderBrush>
                             <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                                <GradientStop Color="#D489FF" Offset="0" />
-                                <GradientStop Color="#7985FF" Offset="0.5" />
-                                <GradientStop Color="#6AD8FD" Offset="1" />
+                                <GradientStop Offset="0" Color="#D489FF" />
+                                <GradientStop Offset="0.5" Color="#7985FF" />
+                                <GradientStop Offset="1" Color="#6AD8FD" />
                             </LinearGradientBrush>
                         </Border.BorderBrush>
                         <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Center" />
@@ -74,31 +88,27 @@
 
 
     <Style x:Key="buttonIcon" TargetType="materialDesign:PackIcon">
-        <Setter Property="Foreground"
-                Value="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" />
+        <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" />
         <Setter Property="Width" Value="23" />
         <Setter Property="Height" Value="23" />
     </Style>
 
 
     <Style x:Key="buttonText" TargetType="TextBlock">
-        <Setter Property="Margin" Value="13 0 0 0" />
+        <Setter Property="Margin" Value="13,0,0,0" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
 
 
     <Style x:Key="buttonIconExpand" TargetType="materialDesign:PackIcon">
-        <Setter Property="Foreground"
-                Value="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" />
+        <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" />
         <Setter Property="Width" Value="25" />
         <Setter Property="Height" Value="25" />
         <Setter Property="HorizontalAlignment" Value="Right" />
         <Setter Property="Visibility" Value="Hidden" />
         <Style.Triggers>
-            <DataTrigger
-                Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
-                Value="True">
+            <DataTrigger Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" Value="True">
                 <Setter Property="Visibility" Value="Visible" />
             </DataTrigger>
         </Style.Triggers>
@@ -121,8 +131,11 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Background="{TemplateBinding Background}" Padding="20 10 20 10" BorderThickness="0 0 0 2"
-                            BorderBrush="#3F375F">
+                    <Border
+                        Padding="20,10,20,10"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="#3F375F"
+                        BorderThickness="0,0,0,2">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>
                 </ControlTemplate>
@@ -134,13 +147,15 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Button}">
-                            <Border Background="{TemplateBinding Background}" Padding="20 10 20 10"
-                                    BorderThickness="0 0 0 2">
+                            <Border
+                                Padding="20,10,20,10"
+                                Background="{TemplateBinding Background}"
+                                BorderThickness="0,0,0,2">
                                 <Border.BorderBrush>
                                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                        <GradientStop Color="#D489FF" Offset="0" />
-                                        <GradientStop Color="#7985FF" Offset="0.5" />
-                                        <GradientStop Color="#6AD8FD" Offset="1" />
+                                        <GradientStop Offset="0" Color="#D489FF" />
+                                        <GradientStop Offset="0.5" Color="#7985FF" />
+                                        <GradientStop Offset="1" Color="#6AD8FD" />
                                     </LinearGradientBrush>
                                 </Border.BorderBrush>
 
@@ -157,16 +172,22 @@
     </Style>
 
 
-    <Style x:Key="activeTabButton" TargetType="Button" BasedOn="{StaticResource tabButton}">
+    <Style
+        x:Key="activeTabButton"
+        BasedOn="{StaticResource tabButton}"
+        TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Background="{TemplateBinding Background}" Padding="20 10 20 10" BorderThickness="0 0 0 2">
+                    <Border
+                        Padding="20,10,20,10"
+                        Background="{TemplateBinding Background}"
+                        BorderThickness="0,0,0,2">
                         <Border.BorderBrush>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                <GradientStop Color="#D489FF" Offset="0" />
-                                <GradientStop Color="#7985FF" Offset="0.5" />
-                                <GradientStop Color="#6AD8FD" Offset="1" />
+                                <GradientStop Offset="0" Color="#D489FF" />
+                                <GradientStop Offset="0.5" Color="#7985FF" />
+                                <GradientStop Offset="1" Color="#6AD8FD" />
                             </LinearGradientBrush>
                         </Border.BorderBrush>
 
@@ -186,7 +207,7 @@
     <Style TargetType="TextBox">
         <Setter Property="Background" Value="#3F375F" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-        <Setter Property="Padding" Value="15 12" />
+        <Setter Property="Padding" Value="15,12" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="FontSize" Value="12" />
         <Setter Property="Foreground" Value="#fcfcfc" />
@@ -201,16 +222,19 @@
     <Style x:Key="sendButton" TargetType="Button">
         <Setter Property="Height" Value="50" />
         <Setter Property="Foreground" Value="#f0f0f0" />
-        <Setter Property="Margin" Value="0 15 0 0" />
+        <Setter Property="Margin" Value="0,15,0,0" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border CornerRadius="20" Padding="20 0 20 0" BorderThickness="0">
+                    <Border
+                        Padding="20,0,20,0"
+                        BorderThickness="0"
+                        CornerRadius="20">
                         <Border.Background>
                             <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
-                                <GradientStop Color="#7985FF" Offset="0" />
-                                <GradientStop Color="#6AD8FD" Offset="1" />
+                                <GradientStop Offset="0" Color="#7985FF" />
+                                <GradientStop Offset="1" Color="#6AD8FD" />
                             </LinearGradientBrush>
                         </Border.Background>
 
@@ -226,11 +250,14 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Button}">
-                            <Border CornerRadius="20" Padding="20 0 20 0" BorderThickness="0">
+                            <Border
+                                Padding="20,0,20,0"
+                                BorderThickness="0"
+                                CornerRadius="20">
                                 <Border.Background>
                                     <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
-                                        <GradientStop Color="#7985FF" Offset="0.5" />
-                                        <GradientStop Color="#6AD8FD" Offset="1" />
+                                        <GradientStop Offset="0.5" Color="#7985FF" />
+                                        <GradientStop Offset="1" Color="#6AD8FD" />
                                     </LinearGradientBrush>
                                 </Border.Background>
 
@@ -247,7 +274,7 @@
     <Style x:Key="bankCardNumber" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#fcfcfc" />
         <Setter Property="FontSize" Value="16" />
-        <Setter Property="Margin" Value="17 0" />
+        <Setter Property="Margin" Value="17,0" />
     </Style>
 
 
@@ -281,8 +308,12 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Background="{TemplateBinding Background}" CornerRadius="10" BorderBrush="#504373"
-                            Padding="10 8 10 8" BorderThickness="1">
+                    <Border
+                        Padding="10,8,10,8"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="#504373"
+                        BorderThickness="1"
+                        CornerRadius="10">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>
                 </ControlTemplate>
@@ -301,18 +332,28 @@
     </Style>
 
 
-    <Style x:Key="fillButton" TargetType="Button" BasedOn="{StaticResource ResourceKey=button}">
+    <Style
+        x:Key="fillButton"
+        BasedOn="{StaticResource ResourceKey=button}"
+        TargetType="Button">
         <Setter Property="Background" Value="#6b5a96" />
     </Style>
 
 
-    <Style x:Key="topMenuButton" TargetType="Button" BasedOn="{StaticResource ResourceKey=button}">
+    <Style
+        x:Key="topMenuButton"
+        BasedOn="{StaticResource ResourceKey=button}"
+        TargetType="Button">
         <Setter Property="Background" Value="#3C315B" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Background="{TemplateBinding Background}" CornerRadius="15" BorderBrush="#504373"
-                            Padding="10 8 10 8" BorderThickness="1">
+                    <Border
+                        Padding="10,8,10,8"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="#504373"
+                        BorderThickness="1"
+                        CornerRadius="15">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>
                 </ControlTemplate>

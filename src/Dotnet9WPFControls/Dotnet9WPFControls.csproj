@@ -16,6 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Prism.Core" Version="8.1.97" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="favicon.ico" />
     <Resource Include="logo.png" />
   </ItemGroup>

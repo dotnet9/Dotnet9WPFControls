@@ -1,6 +1,4 @@
-﻿using Dotnet9WPFControls.Controls.Helpers;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -8,19 +6,19 @@ using System.Windows.Media;
 // ReSharper disable once CheckNamespace
 namespace Dotnet9WPFControls.Controls
 {
-    [TemplatePart(Name = PART_Bor, Type = typeof(Border))]
-    [TemplatePart(Name = PART_Can, Type = typeof(Canvas))]
+    [TemplatePart(Name = PartBorrderBackground, Type = typeof(Border))]
+    [TemplatePart(Name = PartCanvasHint, Type = typeof(Canvas))]
     public class GuideWindow : Window
     {
-        private const string PART_Bor = "PART_Bor";
-        private const string PART_Can = "PART_Can";
-        private readonly List<GuideInfo> list;
+        private const string PartBorrderBackground = "PART_Border_Background";
+        private const string PartCanvasHint = "PART_Canvas_Hint";
+        private readonly List<GuideInfo> _guideInfos;
 
-        private Border bor;
+        private Border? _borderBackground;
 
-        private PathGeometry borGeometry = new();
-        private Canvas canvas;
-        private int index;
+        private PathGeometry _borGeometry = new();
+        private Canvas? _canvasHint;
+        private int _showIndex;
 
         static GuideWindow()
         {
@@ -34,81 +32,71 @@ namespace Dotnet9WPFControls.Controls
             AllowsTransparency = true;
             ShowInTaskbar = false;
 
-            //设置弹出的窗体
             Height = targetWindow.ActualHeight;
             Width = targetWindow.ActualWidth;
             WindowState = targetWindow.WindowState;
             Left = targetWindow.Left;
             Top = targetWindow.Top;
             Owner = targetWindow;
-            list = guideList;
+            _guideInfos = guideList;
         }
 
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
 
-            bor = GetTemplateChild(PART_Bor) as Border;
-            canvas = GetTemplateChild(PART_Can) as Canvas;
+            _borderBackground = GetTemplateChild(PartBorrderBackground) as Border;
+            _canvasHint = GetTemplateChild(PartCanvasHint) as Canvas;
 
-            GuideInfo currentGuideInfo = list[index];
+            GuideInfo currentGuideInfo = _guideInfos[_showIndex];
             ShowGuidArea(currentGuideInfo.Uc, currentGuideInfo);
         }
 
 
-        private void ShowGuidArea(FrameworkElement tagetControl, GuideInfo guide)
+        private void ShowGuidArea(FrameworkElement? targetControl, GuideInfo guide)
         {
-            Point point = tagetControl.TransformToAncestor(GetWindow(tagetControl)!)
+            if (targetControl == null)
+            {
+                return;
+            }
+
+            Point point = targetControl.TransformToAncestor(GetWindow(targetControl)!)
                 .Transform(new Point(0, 0)); //获取控件坐标点
 
-            RectangleGeometry rg = new();
-            rg.Rect = new Rect(0, 0, Width, Height);
-            borGeometry = Geometry.Combine(borGeometry, rg, GeometryCombineMode.Union, null);
-            bor.Clip = borGeometry;
+            RectangleGeometry rg = new() {Rect = new Rect(0, 0, Width, Height)};
+            _borGeometry = Geometry.Combine(_borGeometry, rg, GeometryCombineMode.Union, null);
+            _borderBackground!.Clip = _borGeometry;
 
-            RectangleGeometry rg1 = new();
-            rg1.RadiusX = 3;
-            rg1.RadiusY = 3;
-            rg1.Rect = new Rect(point.X - 5, point.Y - 5, tagetControl.ActualWidth + 10,
-                tagetControl.ActualHeight + 10);
-            borGeometry = Geometry.Combine(borGeometry, rg1, GeometryCombineMode.Exclude, null);
+            RectangleGeometry rg1 = new()
+            {
+                RadiusX = 3,
+                RadiusY = 3,
+                Rect = new Rect(point.X - 5, point.Y - 5, targetControl.ActualWidth + 10,
+                    targetControl.ActualHeight + 10)
+            };
+            _borGeometry = Geometry.Combine(_borGeometry, rg1, GeometryCombineMode.Exclude, null);
 
-            bor.Clip = borGeometry;
+            _borderBackground.Clip = _borGeometry;
 
-            HintUc hit = new(this, point, tagetControl, guide);
-            hit.NextHintEvent -= Hit_nextHintEvent;
-            hit.NextHintEvent += Hit_nextHintEvent;
-            canvas.Children.Add(hit);
+            HintUc hit = new(this, point, targetControl, guide);
+            hit.NextHintEvent -= Hit_NextHintEvent;
+            hit.NextHintEvent += Hit_NextHintEvent;
+            _canvasHint?.Children.Add(hit);
         }
 
-        private void Hit_nextHintEvent()
+        private void Hit_NextHintEvent()
         {
-            canvas.Children.Clear();
-            if (index >= list.Count - 1)
+            _canvasHint?.Children.Clear();
+            if (_showIndex >= _guideInfos.Count - 1)
             {
                 Close();
                 return;
             }
 
-            index++;
+            _showIndex++;
 
-            GuideInfo currentGuideInfo = list[index];
+            GuideInfo currentGuideInfo = _guideInfos[_showIndex];
             ShowGuidArea(currentGuideInfo.Uc, currentGuideInfo);
-        }
-
-        public static void ShowGuideBox(List<object> guideList)
-        {
-            List<GuideInfo> list = new();
-            foreach (FrameworkElement obj in guideList.OfType<FrameworkElement>())
-            {
-                GuideInfo guide = GuideHelper.GetGuideInfo(obj)!;
-                guide.Uc = obj;
-                list.Add(guide);
-            }
-
-            GuideWindow win = new(GetWindow(list[0].Uc)!, list);
-
-            win.Show();
         }
     }
 }

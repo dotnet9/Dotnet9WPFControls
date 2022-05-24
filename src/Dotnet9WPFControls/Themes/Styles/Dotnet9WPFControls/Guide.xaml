@@ -12,7 +12,7 @@
                 <ControlTemplate TargetType="{x:Type controls:GuideWindow}">
                     <Grid>
                         <Border
-                            x:Name="PART_Bor"
+                            x:Name="PART_Border_Background"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Opacity="0.8">
@@ -28,15 +28,52 @@
                                 CornerRadius="5"
                                 Opacity="0.5" />
                         </Border>
-                        <Canvas x:Name="PART_Can" />
+                        <Canvas x:Name="PART_Canvas_Hint" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <!--  默认样式  -->
-    <Style BasedOn="{StaticResource Styles.GuideWindow}" TargetType="{x:Type controls:GuideWindow}" />
+    <Style x:Key="CloseButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.ThemeBackground}" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Border x:Name="Chrome" BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}"
+                                              Content="{TemplateBinding Content}"
+                                              ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              Margin="{TemplateBinding Padding}" RecognizesAccessKey="True"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Opacity" Value=".9" />
+                <Setter Property="Foreground" Value="{DynamicResource DarkDangerBrush}" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Opacity" Value=".6" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.5" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 
     <Style x:Key="Styles.HintUc" TargetType="{x:Type controls:HintUc}">
         <Setter Property="Foreground" Value="Orange" />
@@ -93,6 +130,10 @@
                                 Foreground="Black"
                                 Text="{TemplateBinding Title}" />
 
+                            <Button x:Name="PART_Btn_Close" Content="×" FontSize="16" Grid.Row="0"
+                                    HorizontalAlignment="Right" VerticalAlignment="Top" Height="20" Width="20"
+                                    Style="{StaticResource CloseButtonStyle}" IsCancel="True" />
+
                             <TextBlock
                                 x:Name="PART_Tb_Content"
                                 Grid.Row="1"
@@ -104,10 +145,11 @@
                             <Button
                                 x:Name="PART_Btn_Next"
                                 Grid.Row="2"
-                                MinWidth="60"
-                                MinHeight="25"
+                                MinWidth="75"
+                                MinHeight="30"
+                                Margin="0 20 0 0"
                                 HorizontalAlignment="Right"
-                                Content="{TemplateBinding NextContent}"
+                                Content="{TemplateBinding ButtonContent}"
                                 IsDefault="True"
                                 Style="{DynamicResource MainButtonStyle}" />
                         </Grid>
@@ -117,7 +159,7 @@
         </Setter>
     </Style>
 
-    <!--  默认样式  -->
+    <Style BasedOn="{StaticResource Styles.GuideWindow}" TargetType="{x:Type controls:GuideWindow}" />
     <Style BasedOn="{StaticResource Styles.HintUc}" TargetType="{x:Type controls:HintUc}" />
 
 </ResourceDictionary>

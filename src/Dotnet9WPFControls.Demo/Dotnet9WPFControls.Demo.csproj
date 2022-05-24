@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Images\**" />
+    <EmbeddedResource Remove="Images\**" />
+    <None Remove="Images\**" />
+    <Page Remove="Images\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="favicon.ico" />
     <None Remove="logo.png" />
   </ItemGroup>
@@ -24,10 +31,6 @@
   <ItemGroup>
     <Resource Include="favicon.ico" />
     <Resource Include="logo.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Images\" />
   </ItemGroup>
 
 </Project>
