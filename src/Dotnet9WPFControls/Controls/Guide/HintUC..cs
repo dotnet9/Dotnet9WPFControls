@@ -47,14 +47,14 @@ namespace Dotnet9WPFControls.Controls
             _targetControlPoint = point;
             _targetControl = targetControl;
 
-            if (guide.Width != null)
+            if (guide.MinWidth != null)
             {
-                Width = guide.Width.Value;
+                MinWidth = guide.MinWidth.Value;
             }
 
-            if (guide.Height != null)
+            if (guide.MinHeight != null)
             {
-                Height = guide.Height.Value;
+                MinHeight = guide.MinHeight.Value;
             }
 
             Title = guide.Title;
