@@ -108,7 +108,7 @@ namespace Dotnet9WPFControls.Controls
 
             GuideWindow win = new(GetWindow(list[0].Uc)!, list);
 
-            win.ShowDialog();
+            win.Show();
         }
     }
 }
