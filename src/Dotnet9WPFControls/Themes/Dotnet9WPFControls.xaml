@@ -2,10 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary
-            Source="pack://application:,,,/Dotnet9WPFControls;component/Styles/Dotnet9WPFControls/Button.xaml" />
+            Source="pack://application:,,,/Dotnet9WPFControls;component/Themes/Styles/Dotnet9WPFControls/Button.xaml" />
         <ResourceDictionary
-            Source="pack://application:,,,/Dotnet9WPFControls;component/Styles/Dotnet9WPFControls/GuideWindow.xaml" />
-        <ResourceDictionary
-            Source="pack://application:,,,/Dotnet9WPFControls;component/Styles/Dotnet9WPFControls/HintUC.xaml" />
+            Source="pack://application:,,,/Dotnet9WPFControls;component/Themes/Styles/Dotnet9WPFControls/Guide.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

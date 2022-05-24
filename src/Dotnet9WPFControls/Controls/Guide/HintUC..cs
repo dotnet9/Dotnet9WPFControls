@@ -5,14 +5,14 @@ using System.Windows.Media;
 // ReSharper disable once CheckNamespace
 namespace Dotnet9WPFControls.Controls
 {
-    [TemplatePart(Name = PART_Background_Viewbox, Type = typeof(Viewbox))]
-    [TemplatePart(Name = PART_Btn_Next, Type = typeof(Button))]
+    [TemplatePart(Name = PartBackgroundViewbox, Type = typeof(Viewbox))]
+    [TemplatePart(Name = PartBtnNext, Type = typeof(Button))]
     public class HintUc : Control
     {
         public delegate void NextHintDelegate();
 
-        private const string PART_Background_Viewbox = "PART_Background_Viewbox";
-        private const string PART_Btn_Next = "PART_Btn_Next";
+        private const string PartBackgroundViewbox = "PART_Background_Viewbox";
+        private const string PartBtnNext = "PART_Btn_Next";
 
         public static readonly DependencyProperty GridMarginProperty =
             DependencyProperty.Register(nameof(GridMargin), typeof(Thickness), typeof(HintUc),
@@ -32,8 +32,8 @@ namespace Dotnet9WPFControls.Controls
 
         private readonly FrameworkElement _targetControl;
 
-        private Viewbox _backgroundViewbox;
-        private Button _btnNext;
+        private Viewbox? _backgroundViewbox;
+        private Button? _btnNext;
         private Point _targetControlPoint;
 
         static HintUc()
@@ -64,21 +64,21 @@ namespace Dotnet9WPFControls.Controls
             Loaded += HintUC_Loaded;
         }
 
-        public string Title
+        public string? Title
         {
-            get => (string)GetValue(TitleProperty);
+            get => (string?)GetValue(TitleProperty);
             set => SetValue(TitleProperty, value);
         }
 
-        public string Content
+        public string? Content
         {
-            get => (string)GetValue(ContentProperty);
+            get => (string?)GetValue(ContentProperty);
             set => SetValue(ContentProperty, value);
         }
 
-        public string NextContent
+        public string? NextContent
         {
-            get => (string)GetValue(NextContentProperty);
+            get => (string?)GetValue(NextContentProperty);
             set => SetValue(NextContentProperty, value);
         }
 
@@ -113,7 +113,7 @@ namespace Dotnet9WPFControls.Controls
                 Canvas.SetTop(this, topOfTarget - ActualHeight);
 
                 ScaleTransform scaleTransform = new ScaleTransform {ScaleY = -1};
-                _backgroundViewbox.RenderTransform = scaleTransform;
+                _backgroundViewbox!.RenderTransform = scaleTransform;
                 GridMargin = new Thickness(20, 20, 20, 30);
             }
             // 3、提示框右侧会显示在蒙版外
@@ -124,7 +124,7 @@ namespace Dotnet9WPFControls.Controls
                 Canvas.SetTop(this, bottomOfTarget);
 
                 ScaleTransform scaleTransform = new ScaleTransform {ScaleX = -1};
-                _backgroundViewbox.RenderTransform = scaleTransform;
+                _backgroundViewbox!.RenderTransform = scaleTransform;
             }
             // 4、提示框右侧和下方会显示在蒙版外
             else if (leftOfTarget + ActualWidth > _ownerWindow.Width &&
@@ -134,7 +134,7 @@ namespace Dotnet9WPFControls.Controls
                 Canvas.SetTop(this, topOfTarget - ActualHeight);
 
                 ScaleTransform scaleTransform = new ScaleTransform {ScaleX = -1, ScaleY = -1};
-                _backgroundViewbox.RenderTransform = scaleTransform;
+                _backgroundViewbox!.RenderTransform = scaleTransform;
                 GridMargin = new Thickness(20, 20, 20, 30);
             }
             else //怎么放都不行，就按第一种放吧
@@ -153,8 +153,8 @@ namespace Dotnet9WPFControls.Controls
                 _btnNext.Click -= btn_next_Click;
             }
 
-            _backgroundViewbox = GetTemplateChild(PART_Background_Viewbox) as Viewbox;
-            _btnNext = GetTemplateChild(PART_Btn_Next) as Button;
+            _backgroundViewbox = GetTemplateChild(PartBackgroundViewbox) as Viewbox;
+            _btnNext = GetTemplateChild(PartBtnNext) as Button;
 
             if (_btnNext != null)
             {
@@ -166,7 +166,7 @@ namespace Dotnet9WPFControls.Controls
         {
             base.OnRender(drawingContext);
 
-            _btnNext.Focus();
+            _btnNext?.Focus();
         }
 
         public event NextHintDelegate? NextHintEvent;
