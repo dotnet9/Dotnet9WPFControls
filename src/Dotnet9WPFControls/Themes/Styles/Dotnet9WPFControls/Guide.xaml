@@ -52,15 +52,20 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Grid>
-                        <Border x:Name="Chrome" BorderBrush="{TemplateBinding BorderBrush}"
-                                Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-                            <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}"
-                                              Content="{TemplateBinding Content}"
-                                              ContentStringFormat="{TemplateBinding ContentStringFormat}"
-                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              Margin="{TemplateBinding Padding}" RecognizesAccessKey="True"
-                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        <Border
+                            x:Name="Chrome"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            SnapsToDevicePixels="True">
+                            <ContentPresenter
+                                Margin="{TemplateBinding Padding}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding Content}"
+                                ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                RecognizesAccessKey="True"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                         </Border>
                     </Grid>
                 </ControlTemplate>
@@ -135,9 +140,17 @@
                                 Foreground="Black"
                                 Text="{TemplateBinding Title}" />
 
-                            <Button x:Name="PART_Btn_Close" Content="×" FontSize="16" Grid.Row="0"
-                                    HorizontalAlignment="Right" VerticalAlignment="Top" Height="20" Width="20"
-                                    Style="{StaticResource CloseButtonStyle}" IsCancel="True" />
+                            <Button
+                                x:Name="PART_Btn_Close"
+                                Grid.Row="0"
+                                Width="20"
+                                Height="20"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                Content="×"
+                                FontSize="16"
+                                IsCancel="True"
+                                Style="{StaticResource CloseButtonStyle}" />
 
                             <TextBlock
                                 x:Name="PART_Tb_Content"
@@ -152,7 +165,7 @@
                                 Grid.Row="2"
                                 MinWidth="75"
                                 MinHeight="30"
-                                Margin="0 20 0 0"
+                                Margin="0,20,0,0"
                                 HorizontalAlignment="Right"
                                 Content="{TemplateBinding ButtonContent}"
                                 IsDefault="True"

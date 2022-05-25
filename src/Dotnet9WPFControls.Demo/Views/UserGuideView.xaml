@@ -20,8 +20,7 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary
-                    Source="pack://application:,,,/Dotnet9WPFControls.Demo;component/Styles/UserGuide.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Dotnet9WPFControls.Demo;component/Styles/UserGuide.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <converters:BindControlToGuideConverter x:Key="BindControlToGuideConverter" />
         </ResourceDictionary>
@@ -433,8 +432,7 @@
                         </helpers:GuideHelper.GuideInfo>
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Loaded">
-                                <i:InvokeCommandAction Command="helpers:GuideHelper.ShowGuideCommand"
-                                                       CommandParameter="{Binding BtnShowGuide}" />
+                                <i:InvokeCommandAction Command="helpers:GuideHelper.ShowGuideCommand" CommandParameter="{Binding BtnShowGuide}" />
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                         <materialDesign:PackIcon Kind="Help" Style="{StaticResource topMenuIcon}" />

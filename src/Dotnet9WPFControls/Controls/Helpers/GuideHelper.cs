@@ -44,7 +44,13 @@ namespace Dotnet9WPFControls.Controls.Helpers
                 throw new Exception($"引导参数不正确，应该为 {typeof(GuideInfo)} 或者 {typeof(List<GuideInfo>)}");
             }
 
-            GuideWindow win = new GuideWindow(Window.GetWindow(guideList[0].TargetControl!)!, guideList);
+            var ownerWindow = Window.GetWindow(guideList[0].TargetControl!);
+            if (ownerWindow == null)
+            {
+                return;
+            }
+
+            var win = new GuideWindow(Window.GetWindow(guideList[0].TargetControl!)!, guideList);
 
             win.Show();
         }
