@@ -155,7 +155,6 @@
                 Grid.RowSpan="3"
                 Grid.Column="0"
                 Grid.ColumnSpan="3"
-                Display="{Binding IsDisplayGuide}"
                 Guides="{Binding GuideLists}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Loaded">

@@ -104,23 +104,22 @@ namespace Dotnet9WPFControls.Controls
 
             Point point = targetControl.TransformToAncestor(container).Transform(new Point(0, 0)); //获取控件坐标点
 
-            RectangleGeometry rg =
-                new RectangleGeometry { Rect = new Rect(0, 0, container.ActualWidth, container.ActualHeight) };
+            RectangleGeometry rg = new() { Rect = new Rect(0, 0, container.ActualWidth, container.ActualHeight) };
             _borGeometry = Geometry.Combine(_borGeometry, rg, GeometryCombineMode.Union, null);
             _borderBackground!.Clip = _borGeometry;
 
-            RectangleGeometry rg1 = new RectangleGeometry
+            RectangleGeometry rg1 = new()
             {
                 RadiusX = 3,
                 RadiusY = 3,
-                Rect = new Rect(point.X - 5, point.Y - 5, targetControl.ActualWidth + 7,
-                    targetControl.ActualHeight + 7)
+                Rect = new Rect(point.X - 5, point.Y - 5, targetControl.ActualWidth + 10,
+                    targetControl.ActualHeight + 10)
             };
             _borGeometry = Geometry.Combine(_borGeometry, rg1, GeometryCombineMode.Exclude, null);
 
             _borderBackground.Clip = _borGeometry;
 
-            HintForGuideControl hit = new HintForGuideControl(this, point, targetControl, guide);
+            HintForGuideControl hit = new(this, point, targetControl, guide);
             hit.NextHintEvent -= Hit_NextHintEvent;
             hit.NextHintEvent += Hit_NextHintEvent;
             _canvasHint?.Children.Add(hit);
