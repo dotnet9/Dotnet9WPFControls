@@ -9,6 +9,7 @@
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="http://prismlibrary.com/"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     Title="Dotnet9 WPF自定义控件"
     Width="800"
     Height="600"
@@ -61,16 +62,29 @@
                 </helpers:GuideHelper.GuideInfo>
             </Button>
 
+            <ListBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Top">
+
+                <Button
+                    Content="ListBox中的按钮"
+                    Style="{StaticResource Styles.ButtonDemo}">
+                    <helpers:GuideHelper.GuideInfo>
+                        <MultiBinding Converter="{StaticResource BindControlToGuideConverter}">
+                            <Binding RelativeSource="{RelativeSource Self}" />
+                            <Binding RelativeSource="{RelativeSource AncestorType={x:Type Window}}"
+                                     Path="DataContext.ListBoxItemGuide" />
+                        </MultiBinding>
+                    </helpers:GuideHelper.GuideInfo>
+                </Button>
+            </ListBox>
+
             <Button
                 Grid.Row="0"
                 Grid.Column="2"
-                Width="20"
-                Height="20"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
                 Click="Close_Click"
-                Content="×"
-                FontSize="16"
+                FontSize="32"
+                Margin="5"
                 IsCancel="True"
                 Style="{StaticResource CloseButtonStyle}">
                 <helpers:GuideHelper.GuideInfo>
@@ -79,6 +93,7 @@
                         <Binding Path="BtnCloseGuide" />
                     </MultiBinding>
                 </helpers:GuideHelper.GuideInfo>
+                <materialDesign:PackIcon Kind="Close" />
             </Button>
 
             <Button

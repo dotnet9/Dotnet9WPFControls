@@ -16,6 +16,8 @@ namespace Dotnet9WPFControls.Demo.ViewModels
 
         private GuideInfo? _btnShowGuide;
 
+        private GuideInfo? _listBoxItemGuide;
+
         public GuideInfo BtnCloseGuide =>
             _btnCloseGuide ??= new GuideInfo("关闭点这里", "不使用了点击这里关闭窗体");
 
@@ -31,13 +33,17 @@ namespace Dotnet9WPFControls.Demo.ViewModels
         public GuideInfo BtnRightBottomGuide =>
             _btnRightBottomGuide ??= new GuideInfo("右下引导", "测试右下引导提示显示位置");
 
+        public GuideInfo ListBoxItemGuide =>
+            _listBoxItemGuide ??= new GuideInfo("嵌套控件的引导", "测试嵌套控件的引导");
+
         public List<GuideInfo> GuideLists => new()
         {
             BtnShowGuide,
             BtnCloseGuide,
             BtnLeftTopGuide,
             BtnLeftBottomGuide,
-            BtnRightBottomGuide
+            BtnRightBottomGuide,
+            ListBoxItemGuide
         };
     }
 }
