@@ -30,7 +30,7 @@ namespace Dotnet9WPFControls.Controls.Helpers
 
         public static void ExecuteShowGuideCommand(object guide)
         {
-            List<GuideInfo>? guideList = null;
+            List<GuideInfo>? guideList;
             if (guide.GetType() == typeof(GuideInfo))
             {
                 guideList = new List<GuideInfo> { (GuideInfo)guide };
@@ -46,7 +46,7 @@ namespace Dotnet9WPFControls.Controls.Helpers
 
             GuideWindow win = new GuideWindow(Window.GetWindow(guideList[0].TargetControl!)!, guideList);
 
-            win.ShowDialog();
+            win.Show();
         }
     }
 }

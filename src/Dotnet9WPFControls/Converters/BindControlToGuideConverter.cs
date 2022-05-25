@@ -17,7 +17,10 @@ namespace Dotnet9WPFControls.Converters
 
             var element = values[0] as FrameworkElement;
             var guide = values[1] as GuideInfo;
-            guide!.TargetControl = element;
+            if (guide != null)
+            {
+                guide.TargetControl = element;
+            }
 
             return guide;
         }

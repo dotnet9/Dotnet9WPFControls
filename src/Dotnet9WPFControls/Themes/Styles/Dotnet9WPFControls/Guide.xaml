@@ -12,21 +12,26 @@
                 <ControlTemplate TargetType="{x:Type controls:GuideWindow}">
                     <Grid>
                         <Border
-                            x:Name="PART_Border_Background"
-                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Background="#11000000"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Opacity="0.8">
-                            <Border.Effect>
-                                <DropShadowEffect
-                                    BlurRadius="8"
-                                    ShadowDepth="0"
-                                    Color="#FF414141" />
-                            </Border.Effect>
                             <Border
-                                Margin="0"
-                                Background="{TemplateBinding Background}"
-                                CornerRadius="5"
-                                Opacity="0.5" />
+                                x:Name="PART_Border_Background"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Opacity="0.8">
+                                <Border.Effect>
+                                    <DropShadowEffect
+                                        BlurRadius="8"
+                                        ShadowDepth="0"
+                                        Color="#FF414141" />
+                                </Border.Effect>
+                                <Border
+                                    Margin="0"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="5"
+                                    Opacity="0.5" />
+                            </Border>
                         </Border>
                         <Canvas x:Name="PART_Canvas_Hint" />
                     </Grid>
