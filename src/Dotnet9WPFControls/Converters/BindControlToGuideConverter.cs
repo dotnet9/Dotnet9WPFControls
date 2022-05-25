@@ -6,7 +6,7 @@ using System.Windows.Data;
 
 namespace Dotnet9WPFControls.Converters
 {
-    public class BindControlToGuideCovnerter : IMultiValueConverter
+    public class BindControlToGuideConverter : IMultiValueConverter
     {
         public object? Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
@@ -15,9 +15,9 @@ namespace Dotnet9WPFControls.Converters
                 return null;
             }
 
-            FrameworkElement? element = values[0] as FrameworkElement;
-            GuideInfo? guide = values[1] as GuideInfo;
-            guide!.Uc = element;
+            var element = values[0] as FrameworkElement;
+            var guide = values[1] as GuideInfo;
+            guide!.TargetControl = element;
 
             return guide;
         }

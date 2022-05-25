@@ -18,7 +18,7 @@ namespace Dotnet9WPFControls.Controls
 
         private PathGeometry _borGeometry = new();
         private Canvas? _canvasHint;
-        private int _showIndex;
+        private int _currentHintShowIndex;
 
         static GuideWindow()
         {
@@ -48,8 +48,18 @@ namespace Dotnet9WPFControls.Controls
             _borderBackground = GetTemplateChild(PartBorrderBackground) as Border;
             _canvasHint = GetTemplateChild(PartCanvasHint) as Canvas;
 
-            GuideInfo currentGuideInfo = _guideInfos[_showIndex];
-            ShowGuidArea(currentGuideInfo.Uc, currentGuideInfo);
+            if (_guideInfos.Count <= _currentHintShowIndex)
+            {
+                return;
+            }
+
+            GuideInfo currentGuideInfo = _guideInfos[_currentHintShowIndex];
+            if (currentGuideInfo.TargetControl == null)
+            {
+                return;
+            }
+
+            ShowGuidArea(currentGuideInfo.TargetControl, currentGuideInfo);
         }
 
 
@@ -63,7 +73,7 @@ namespace Dotnet9WPFControls.Controls
             Point point = targetControl.TransformToAncestor(GetWindow(targetControl)!)
                 .Transform(new Point(0, 0)); //获取控件坐标点
 
-            RectangleGeometry rg = new() {Rect = new Rect(0, 0, Width, Height)};
+            RectangleGeometry rg = new RectangleGeometry { Rect = new Rect(0, 0, Width, Height) };
             _borGeometry = Geometry.Combine(_borGeometry, rg, GeometryCombineMode.Union, null);
             _borderBackground!.Clip = _borGeometry;
 
@@ -86,17 +96,26 @@ namespace Dotnet9WPFControls.Controls
 
         private void Hit_NextHintEvent()
         {
-            _canvasHint?.Children.Clear();
-            if (_showIndex >= _guideInfos.Count - 1)
+            while (true)
             {
-                Close();
-                return;
+                _canvasHint?.Children.Clear();
+                if (_currentHintShowIndex >= _guideInfos.Count - 1)
+                {
+                    Close();
+                    return;
+                }
+
+                _currentHintShowIndex++;
+
+                GuideInfo currentGuideInfo = _guideInfos[_currentHintShowIndex];
+                if (currentGuideInfo.TargetControl == null)
+                {
+                    continue;
+                }
+
+                ShowGuidArea(currentGuideInfo.TargetControl, currentGuideInfo);
+                break;
             }
-
-            _showIndex++;
-
-            GuideInfo currentGuideInfo = _guideInfos[_showIndex];
-            ShowGuidArea(currentGuideInfo.Uc, currentGuideInfo);
         }
     }
 }

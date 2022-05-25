@@ -23,7 +23,7 @@
                 <ResourceDictionary
                     Source="pack://application:,,,/Dotnet9WPFControls.Demo;component/Styles/UserGuide.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <converters:BindControlToGuideCovnerter x:Key="BindControlToGuideCovnerter" />
+            <converters:BindControlToGuideConverter x:Key="BindControlToGuideConverter" />
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
@@ -86,7 +86,7 @@
 
                 <Button Style="{StaticResource activeMenuButton}">
                     <helpers:GuideHelper.GuideInfo>
-                        <MultiBinding Converter="{StaticResource BindControlToGuideCovnerter}">
+                        <MultiBinding Converter="{StaticResource BindControlToGuideConverter}">
                             <Binding RelativeSource="{RelativeSource Self}" />
                             <Binding Path="BtnWalletGuide" />
                         </MultiBinding>
@@ -105,7 +105,7 @@
 
                 <Button Style="{StaticResource menuButton}">
                     <helpers:GuideHelper.GuideInfo>
-                        <MultiBinding Converter="{StaticResource BindControlToGuideCovnerter}">
+                        <MultiBinding Converter="{StaticResource BindControlToGuideConverter}">
                             <Binding RelativeSource="{RelativeSource Self}" />
                             <Binding Path="BtnNotifactionGuide" />
                         </MultiBinding>
@@ -134,7 +134,7 @@
 
                 <Button Style="{StaticResource menuButton}">
                     <helpers:GuideHelper.GuideInfo>
-                        <MultiBinding Converter="{StaticResource BindControlToGuideCovnerter}">
+                        <MultiBinding Converter="{StaticResource BindControlToGuideConverter}">
                             <Binding RelativeSource="{RelativeSource Self}" />
                             <Binding Path="BtnRecordGuide" />
                         </MultiBinding>
@@ -195,7 +195,7 @@
 
                 <Button Click="Close_Click" Style="{StaticResource menuButton}">
                     <helpers:GuideHelper.GuideInfo>
-                        <MultiBinding Converter="{StaticResource BindControlToGuideCovnerter}">
+                        <MultiBinding Converter="{StaticResource BindControlToGuideConverter}">
                             <Binding RelativeSource="{RelativeSource Self}" />
                             <Binding Path="BtnCloseGuide" />
                         </MultiBinding>
@@ -241,7 +241,7 @@
                             Text="fad23b456g56fsd2sdf4sdj76urdetgx22d"
                             TextAlignment="Center">
                             <helpers:GuideHelper.GuideInfo>
-                                <MultiBinding Converter="{StaticResource BindControlToGuideCovnerter}">
+                                <MultiBinding Converter="{StaticResource BindControlToGuideConverter}">
                                     <Binding RelativeSource="{RelativeSource Self}" />
                                     <Binding Path="TxtPayCodeGuide" />
                                 </MultiBinding>
@@ -297,7 +297,7 @@
 
                         <Button Style="{StaticResource sendButton}">
                             <helpers:GuideHelper.GuideInfo>
-                                <MultiBinding Converter="{StaticResource BindControlToGuideCovnerter}">
+                                <MultiBinding Converter="{StaticResource BindControlToGuideConverter}">
                                     <Binding RelativeSource="{RelativeSource Self}" />
                                     <Binding Path="BtnPayGuide" />
                                 </MultiBinding>
@@ -320,7 +320,7 @@
                 <!--  Bank Card  -->
                 <Border Margin="90,40,90,0" Style="{StaticResource cardBorder}">
                     <helpers:GuideHelper.GuideInfo>
-                        <MultiBinding Converter="{StaticResource BindControlToGuideCovnerter}">
+                        <MultiBinding Converter="{StaticResource BindControlToGuideConverter}">
                             <Binding RelativeSource="{RelativeSource Self}" />
                             <Binding Path="BorderWalletOverviewGuide" />
                         </MultiBinding>
@@ -396,7 +396,7 @@
                         Margin="10,0,0,0"
                         Style="{StaticResource topMenuButton}">
                         <helpers:GuideHelper.GuideInfo>
-                            <MultiBinding Converter="{StaticResource BindControlToGuideCovnerter}">
+                            <MultiBinding Converter="{StaticResource BindControlToGuideConverter}">
                                 <Binding RelativeSource="{RelativeSource Self}" />
                                 <Binding Path="BtnAddFilterGuide" />
                             </MultiBinding>
@@ -422,18 +422,18 @@
                     <Button
                         x:Name="BtnShowGuide"
                         Margin="10,0,0,0"
-                        Command="helpers:Commands.ShowGuideCommand"
+                        Command="helpers:GuideHelper.ShowGuideCommand"
                         CommandParameter="{Binding GuideLists}"
                         Style="{StaticResource topMenuButton}">
                         <helpers:GuideHelper.GuideInfo>
-                            <MultiBinding Converter="{StaticResource BindControlToGuideCovnerter}">
+                            <MultiBinding Converter="{StaticResource BindControlToGuideConverter}">
                                 <Binding RelativeSource="{RelativeSource Self}" />
                                 <Binding Path="BtnShowGuide" />
                             </MultiBinding>
                         </helpers:GuideHelper.GuideInfo>
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Loaded">
-                                <i:InvokeCommandAction Command="helpers:Commands.ShowGuideCommand"
+                                <i:InvokeCommandAction Command="helpers:GuideHelper.ShowGuideCommand"
                                                        CommandParameter="{Binding BtnShowGuide}" />
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
@@ -537,7 +537,7 @@
                             VerticalAlignment="Top"
                             Style="{StaticResource button}">
                             <helpers:GuideHelper.GuideInfo>
-                                <MultiBinding Converter="{StaticResource BindControlToGuideCovnerter}">
+                                <MultiBinding Converter="{StaticResource BindControlToGuideConverter}">
                                     <Binding RelativeSource="{RelativeSource Self}" />
                                     <Binding Path="BtnEditInfoGuide" />
                                 </MultiBinding>
@@ -589,7 +589,7 @@
                 <!--  Security Card  -->
                 <Border Margin="20,0,20,0" Style="{StaticResource border}">
                     <helpers:GuideHelper.GuideInfo>
-                        <MultiBinding Converter="{StaticResource BindControlToGuideCovnerter}">
+                        <MultiBinding Converter="{StaticResource BindControlToGuideConverter}">
                             <Binding RelativeSource="{RelativeSource Self}" />
                             <Binding Path="BorderSecurityGuide" />
                         </MultiBinding>

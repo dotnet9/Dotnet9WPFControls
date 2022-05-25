@@ -50,16 +50,8 @@ namespace Dotnet9WPFControls.Controls
             _targetControlPoint = point;
             _targetControl = targetControl;
 
-            if (guide.MinWidth != null)
-            {
-                MinWidth = guide.MinWidth.Value;
-            }
-
-            if (guide.MinHeight != null)
-            {
-                MinHeight = guide.MinHeight.Value;
-            }
-
+            MinWidth = guide.MinWidth;
+            MinHeight = guide.MinHeight;
             Title = guide.Title;
             Content = guide.Content;
             ButtonContent = guide.ButtonContent;
@@ -115,7 +107,7 @@ namespace Dotnet9WPFControls.Controls
                 Canvas.SetLeft(this, leftOfTarget);
                 Canvas.SetTop(this, topOfTarget - ActualHeight);
 
-                ScaleTransform scaleTransform = new() {ScaleY = -1};
+                ScaleTransform scaleTransform = new() { ScaleY = -1 };
                 _backgroundViewbox!.RenderTransform = scaleTransform;
                 GridMargin = new Thickness(16, 16, 16, 26);
             }
@@ -126,7 +118,7 @@ namespace Dotnet9WPFControls.Controls
                 Canvas.SetLeft(this, rightOfTarget - ActualWidth);
                 Canvas.SetTop(this, bottomOfTarget);
 
-                ScaleTransform scaleTransform = new() {ScaleX = -1};
+                ScaleTransform scaleTransform = new() { ScaleX = -1 };
                 _backgroundViewbox!.RenderTransform = scaleTransform;
             }
             // 4、提示框右侧和下方会显示在蒙版外
@@ -136,7 +128,7 @@ namespace Dotnet9WPFControls.Controls
                 Canvas.SetLeft(this, rightOfTarget - ActualWidth);
                 Canvas.SetTop(this, topOfTarget - ActualHeight);
 
-                ScaleTransform scaleTransform = new() {ScaleX = -1, ScaleY = -1};
+                ScaleTransform scaleTransform = new() { ScaleX = -1, ScaleY = -1 };
                 _backgroundViewbox!.RenderTransform = scaleTransform;
                 GridMargin = new Thickness(16, 16, 16, 26);
             }
@@ -153,7 +145,7 @@ namespace Dotnet9WPFControls.Controls
 
             if (_btnNext != null)
             {
-                _btnNext.Click -= btn_next_Click;
+                _btnNext.Click -= BtnNext_Click;
             }
 
             _btnClose = GetTemplateChild(PartBtnClose) as Button;
@@ -162,16 +154,16 @@ namespace Dotnet9WPFControls.Controls
 
             if (_btnClose != null)
             {
-                _btnClose.Click += _btnClose_Click;
+                _btnClose.Click += BtnClose_Click;
             }
 
             if (_btnNext != null)
             {
-                _btnNext.Click += btn_next_Click;
+                _btnNext.Click += BtnNext_Click;
             }
         }
 
-        private void _btnClose_Click(object sender, RoutedEventArgs e)
+        private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
             Window.GetWindow(this)?.Close();
         }
@@ -185,7 +177,7 @@ namespace Dotnet9WPFControls.Controls
 
         public event NextHintDelegate? NextHintEvent;
 
-        private void btn_next_Click(object sender, RoutedEventArgs e)
+        private void BtnNext_Click(object sender, RoutedEventArgs e)
         {
             NextHintEvent?.Invoke();
         }
