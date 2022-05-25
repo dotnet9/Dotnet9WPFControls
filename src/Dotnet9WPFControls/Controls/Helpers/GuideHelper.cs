@@ -14,8 +14,8 @@ namespace Dotnet9WPFControls.Controls.Helpers
                 typeof(GuideHelper),
                 new UIPropertyMetadata(default(GuideInfo)));
 
-        public static ICommand ShowGuideCommand { get; } =
-            new DelegateCommand<object>(ExecuteShowGuideCommand);
+        public static ICommand ShowGuideWindowCommand { get; } =
+            new DelegateCommand<object>(ExecuteShowGuideWindowCommand);
 
         public static GuideInfo? GetGuideInfo(UIElement dependencyObject)
         {
@@ -28,7 +28,7 @@ namespace Dotnet9WPFControls.Controls.Helpers
         }
 
 
-        public static void ExecuteShowGuideCommand(object guide)
+        public static void ExecuteShowGuideWindowCommand(object guide)
         {
             List<GuideInfo>? guideList;
             if (guide.GetType() == typeof(GuideInfo))
@@ -44,13 +44,13 @@ namespace Dotnet9WPFControls.Controls.Helpers
                 throw new Exception($"引导参数不正确，应该为 {typeof(GuideInfo)} 或者 {typeof(List<GuideInfo>)}");
             }
 
-            var ownerWindow = Window.GetWindow(guideList[0].TargetControl!);
+            Window? ownerWindow = Window.GetWindow(guideList[0].TargetControl!);
             if (ownerWindow == null)
             {
                 return;
             }
 
-            var win = new GuideWindow(Window.GetWindow(guideList[0].TargetControl!)!, guideList);
+            GuideWindow win = new GuideWindow(Window.GetWindow(guideList[0].TargetControl!)!, guideList);
 
             win.Show();
         }

@@ -59,11 +59,11 @@ namespace Dotnet9WPFControls.Controls
                 return;
             }
 
-            ShowGuidArea(currentGuideInfo.TargetControl, currentGuideInfo);
+            ShowGuideArea(currentGuideInfo.TargetControl, currentGuideInfo);
         }
 
 
-        private void ShowGuidArea(FrameworkElement? targetControl, GuideInfo guide)
+        private void ShowGuideArea(FrameworkElement? targetControl, GuideInfo guide)
         {
             if (targetControl == null)
             {
@@ -73,7 +73,7 @@ namespace Dotnet9WPFControls.Controls
             Point point = targetControl.TransformToAncestor(GetWindow(targetControl)!)
                 .Transform(new Point(0, 0)); //获取控件坐标点
 
-            RectangleGeometry rg = new RectangleGeometry { Rect = new Rect(0, 0, Width, Height) };
+            RectangleGeometry rg = new() { Rect = new Rect(0, 0, Width, Height) };
             _borGeometry = Geometry.Combine(_borGeometry, rg, GeometryCombineMode.Union, null);
             _borderBackground!.Clip = _borGeometry;
 
@@ -88,7 +88,7 @@ namespace Dotnet9WPFControls.Controls
 
             _borderBackground.Clip = _borGeometry;
 
-            HintUc hit = new(this, point, targetControl, guide);
+            HintForGuideWindow hit = new HintForGuideWindow(this, point, targetControl, guide);
             hit.NextHintEvent -= Hit_NextHintEvent;
             hit.NextHintEvent += Hit_NextHintEvent;
             _canvasHint?.Children.Add(hit);
@@ -113,7 +113,7 @@ namespace Dotnet9WPFControls.Controls
                     continue;
                 }
 
-                ShowGuidArea(currentGuideInfo.TargetControl, currentGuideInfo);
+                ShowGuideArea(currentGuideInfo.TargetControl, currentGuideInfo);
                 break;
             }
         }

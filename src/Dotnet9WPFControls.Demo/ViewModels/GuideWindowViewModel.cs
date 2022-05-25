@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Dotnet9WPFControls.Demo.ViewModels
 {
-    public class UserGuideViewModel : BindableBase
+    public class GuideWindowViewModel : BindableBase
     {
         private GuideInfo? _borderSecurityGuide;
         private GuideInfo? _borderWalletOverviewGuide;

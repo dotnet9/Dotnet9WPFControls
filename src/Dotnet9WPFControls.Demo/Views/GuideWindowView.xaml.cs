@@ -3,9 +3,9 @@ using System.Windows.Input;
 
 namespace Dotnet9WPFControls.Demo.Views
 {
-    public partial class UserGuideView : Window
+    public partial class GuideWindowView : Window
     {
-        public UserGuideView()
+        public GuideWindowView()
         {
             InitializeComponent();
         }

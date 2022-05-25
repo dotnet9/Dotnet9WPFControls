@@ -8,6 +8,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary
                     Source="pack://application:,,,/Dotnet9WPFControls;component/Themes/Dotnet9WPFControls.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/Dotnet9WPFControls.Demo;component/Styles/UserGuide.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </prism:PrismApplication.Resources>

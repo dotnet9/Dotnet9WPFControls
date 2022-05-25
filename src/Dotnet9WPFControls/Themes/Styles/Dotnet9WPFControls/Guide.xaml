@@ -3,43 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:Dotnet9WPFControls.Controls">
 
-    <Style x:Key="Styles.GuideWindow" TargetType="{x:Type controls:GuideWindow}">
-        <Setter Property="BorderBrush" Value="#222222" />
-        <Setter Property="Background" Value="#99000000" />
-        <Setter Property="BorderThickness" Value="2" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type controls:GuideWindow}">
-                    <Grid>
-                        <Border
-                            Background="#11000000"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            Opacity="0.8">
-                            <Border
-                                x:Name="PART_Border_Background"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                Opacity="0.8">
-                                <Border.Effect>
-                                    <DropShadowEffect
-                                        BlurRadius="8"
-                                        ShadowDepth="0"
-                                        Color="#FF414141" />
-                                </Border.Effect>
-                                <Border
-                                    Margin="0"
-                                    Background="{TemplateBinding Background}"
-                                    CornerRadius="5"
-                                    Opacity="0.5" />
-                            </Border>
-                        </Border>
-                        <Canvas x:Name="PART_Canvas_Hint" />
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
     <Style x:Key="CloseButtonStyle" TargetType="{x:Type Button}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="Transparent" />
@@ -85,12 +48,180 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="Styles.HintUc" TargetType="{x:Type controls:HintUc}">
+    <Style x:Key="Styles.GuideWindow" TargetType="{x:Type controls:GuideWindow}">
+        <Setter Property="BorderBrush" Value="#222222" />
+        <Setter Property="Background" Value="#99000000" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:GuideWindow}">
+                    <Grid>
+                        <Border
+                            Background="#11000000"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Opacity="0.8">
+                            <Border
+                                x:Name="PART_Border_Background"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Opacity="0.8">
+                                <Border.Effect>
+                                    <DropShadowEffect
+                                        BlurRadius="8"
+                                        ShadowDepth="0"
+                                        Color="#FF414141" />
+                                </Border.Effect>
+                                <Border
+                                    Margin="0"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="5"
+                                    Opacity="0.5" />
+                            </Border>
+                        </Border>
+                        <Canvas x:Name="PART_Canvas_Hint" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="Styles.GuideControl" TargetType="{x:Type controls:GuideControl}">
+        <Setter Property="BorderBrush" Value="#222222" />
+        <Setter Property="Background" Value="#99000000" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="Visibility" Value="Hidden" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:GuideControl}">
+                    <Grid>
+                        <Border
+                            Background="#11000000"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Opacity="0.8">
+                            <Border
+                                x:Name="PART_Border_Background"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Opacity="0.8">
+                                <Border.Effect>
+                                    <DropShadowEffect
+                                        BlurRadius="8"
+                                        ShadowDepth="0"
+                                        Color="#FF414141" />
+                                </Border.Effect>
+                                <Border
+                                    Margin="0"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="5"
+                                    Opacity="0.5" />
+                            </Border>
+                        </Border>
+                        <Canvas x:Name="PART_Canvas_Hint" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Styles.HintForGuideControl" TargetType="{x:Type controls:HintForGuideControl}">
         <Setter Property="Foreground" Value="Orange" />
         <Setter Property="Background" Value="DarkBlue" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type controls:HintUc}">
+                <ControlTemplate TargetType="{x:Type controls:HintForGuideControl}">
+                    <Grid>
+                        <Viewbox
+                            x:Name="PART_Background_Viewbox"
+                            RenderTransformOrigin="0.5,0.5"
+                            SnapsToDevicePixels="True"
+                            Stretch="Fill">
+                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <Path Fill="White">
+                                    <Path.Data>
+                                        <CombinedGeometry GeometryCombineMode="Union">
+                                            <CombinedGeometry.Geometry1>
+                                                <RectangleGeometry
+                                                    RadiusX="1"
+                                                    RadiusY="1"
+                                                    Rect="0 0 6 6">
+                                                    <RectangleGeometry.Transform>
+                                                        <TransformGroup>
+                                                            <RotateTransform Angle="45" CenterX="3" CenterY="3" />
+                                                            <TranslateTransform X="18" Y="4" />
+                                                        </TransformGroup>
+                                                    </RectangleGeometry.Transform>
+                                                </RectangleGeometry>
+                                            </CombinedGeometry.Geometry1>
+                                            <CombinedGeometry.Geometry2>
+                                                <RectangleGeometry
+                                                    RadiusX="3"
+                                                    RadiusY="3"
+                                                    Rect="0 6 100 60" />
+                                            </CombinedGeometry.Geometry2>
+                                        </CombinedGeometry>
+                                    </Path.Data>
+                                </Path>
+                            </Grid>
+                        </Viewbox>
+                        <Grid Margin="{TemplateBinding GridMargin}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock
+                                x:Name="PART_Tb_Title"
+                                Grid.Row="0"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                Foreground="Black"
+                                Text="{TemplateBinding Title}" />
+
+                            <Button
+                                x:Name="PART_Btn_Close"
+                                Grid.Row="0"
+                                Width="20"
+                                Height="20"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                Content="×"
+                                FontSize="16"
+                                IsCancel="True"
+                                Style="{StaticResource CloseButtonStyle}" />
+
+                            <TextBlock
+                                x:Name="PART_Tb_Content"
+                                Grid.Row="1"
+                                FontSize="14"
+                                Foreground="#aaa"
+                                Text="{TemplateBinding Content}"
+                                TextWrapping="Wrap" />
+
+                            <Button
+                                x:Name="PART_Btn_Next"
+                                Grid.Row="2"
+                                MinWidth="75"
+                                MinHeight="30"
+                                Margin="0,20,0,0"
+                                HorizontalAlignment="Right"
+                                Content="{TemplateBinding ButtonContent}"
+                                IsDefault="True"
+                                Style="{DynamicResource MainButtonStyle}" />
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Styles.HintForGuideWindow" TargetType="{x:Type controls:HintForGuideWindow}">
+        <Setter Property="Foreground" Value="Orange" />
+        <Setter Property="Background" Value="DarkBlue" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:HintForGuideWindow}">
                     <Grid>
                         <Viewbox
                             x:Name="PART_Background_Viewbox"
@@ -178,6 +309,8 @@
     </Style>
 
     <Style BasedOn="{StaticResource Styles.GuideWindow}" TargetType="{x:Type controls:GuideWindow}" />
-    <Style BasedOn="{StaticResource Styles.HintUc}" TargetType="{x:Type controls:HintUc}" />
+    <Style BasedOn="{StaticResource Styles.HintForGuideWindow}" TargetType="{x:Type controls:HintForGuideWindow}" />
+    <Style BasedOn="{StaticResource Styles.GuideControl}" TargetType="{x:Type controls:GuideControl}" />
+    <Style BasedOn="{StaticResource Styles.HintForGuideControl}" TargetType="{x:Type controls:HintForGuideControl}" />
 
 </ResourceDictionary>

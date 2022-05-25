@@ -1,29 +1,24 @@
 ﻿<Window
-    x:Class="Dotnet9WPFControls.Demo.Views.UserGuideView"
+    x:Class="Dotnet9WPFControls.Demo.Views.GuideWindowView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:converters="clr-namespace:Dotnet9WPFControls.Converters;assembly=Dotnet9WPFControls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:helpers="clr-namespace:Dotnet9WPFControls.Controls.Helpers;assembly=Dotnet9WPFControls"
+    xmlns:converters="clr-namespace:Dotnet9WPFControls.Converters;assembly=Dotnet9WPFControls"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="http://prismlibrary.com/"
+    prism:ViewModelLocator.AutoWireViewModel="True"
     Width="1180"
     Height="700"
-    prism:ViewModelLocator.AutoWireViewModel="True"
     AllowsTransparency="True"
     Background="Transparent"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
     <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/Dotnet9WPFControls.Demo;component/Styles/UserGuide.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-            <converters:BindControlToGuideConverter x:Key="BindControlToGuideConverter" />
-        </ResourceDictionary>
+        <converters:BindControlToGuideConverter x:Key="BindControlToGuideConverter" />
     </Window.Resources>
     <Grid>
         <!--  Grid Background  -->
@@ -421,7 +416,7 @@
                     <Button
                         x:Name="BtnShowGuide"
                         Margin="10,0,0,0"
-                        Command="helpers:GuideHelper.ShowGuideCommand"
+                        Command="helpers:GuideHelper.ShowGuideWindowCommand"
                         CommandParameter="{Binding GuideLists}"
                         Style="{StaticResource topMenuButton}">
                         <helpers:GuideHelper.GuideInfo>
@@ -432,7 +427,8 @@
                         </helpers:GuideHelper.GuideInfo>
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Loaded">
-                                <i:InvokeCommandAction Command="helpers:GuideHelper.ShowGuideCommand" CommandParameter="{Binding BtnShowGuide}" />
+                                <i:InvokeCommandAction Command="helpers:GuideHelper.ShowGuideWindowCommand"
+                                                       CommandParameter="{Binding BtnShowGuide}" />
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                         <materialDesign:PackIcon Kind="Help" Style="{StaticResource topMenuIcon}" />
