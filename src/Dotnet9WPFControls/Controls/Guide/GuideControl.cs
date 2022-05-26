@@ -76,20 +76,19 @@ namespace Dotnet9WPFControls.Controls
 
         public void ShowGuide()
         {
-            Visibility = Visibility.Visible;
+            HideGuide();
             if (Guides?.Count <= _currentHintShowIndex)
             {
-                HideGuide();
                 return;
             }
 
             GuideInfo currentGuideInfo = Guides![_currentHintShowIndex];
             if (currentGuideInfo.TargetControl == null)
             {
-                HideGuide();
                 return;
             }
 
+            Visibility = Visibility.Visible;
             ShowGuideArea(currentGuideInfo.TargetControl, currentGuideInfo);
         }
 
