@@ -2,13 +2,12 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 
-// ReSharper disable once CheckNamespace
 namespace Dotnet9WPFControls.Controls
 {
     [TemplatePart(Name = PartBtnClose, Type = typeof(Button))]
     [TemplatePart(Name = PartBackgroundViewbox, Type = typeof(Viewbox))]
     [TemplatePart(Name = PartBtnNext, Type = typeof(Button))]
-    public class HintForGuideControl : Control
+    public class GuideHintBase : Control
     {
         public delegate void NextHintDelegate();
 
@@ -17,40 +16,40 @@ namespace Dotnet9WPFControls.Controls
         private const string PartBtnNext = "PART_Btn_Next";
 
         public static readonly DependencyProperty GridMarginProperty =
-            DependencyProperty.Register(nameof(GridMargin), typeof(Thickness), typeof(HintForGuideControl),
+            DependencyProperty.Register(nameof(GridMargin), typeof(Thickness), typeof(GuideHintBase),
                 new PropertyMetadata(new Thickness(16, 26, 16, 16)));
 
         public static readonly DependencyProperty TitleProperty =
-            DependencyProperty.Register(nameof(Title), typeof(string), typeof(HintForGuideControl),
+            DependencyProperty.Register(nameof(Title), typeof(string), typeof(GuideHintBase),
                 new PropertyMetadata(null));
 
         public static readonly DependencyProperty ContentProperty =
-            DependencyProperty.Register(nameof(Content), typeof(string), typeof(HintForGuideControl),
+            DependencyProperty.Register(nameof(Content), typeof(string), typeof(GuideHintBase),
                 new PropertyMetadata(null));
 
         public static readonly DependencyProperty ButtonContentProperty =
-            DependencyProperty.Register(nameof(ButtonContent), typeof(string), typeof(HintForGuideControl),
-                new PropertyMetadata("下一步"));
-
-        private readonly FrameworkElement _ownerContainer;
+            DependencyProperty.Register(nameof(ButtonContent), typeof(string), typeof(GuideHintBase),
+                new PropertyMetadata(""));
 
         private readonly FrameworkElement _targetControl;
+
+        protected readonly FrameworkElement OwnerContainer;
         private Viewbox? _backgroundViewbox;
 
         private Button? _btnClose;
         private Button? _btnNext;
         private Point _targetControlPoint;
 
-        static HintForGuideControl()
+        static GuideHintBase()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(HintForGuideControl),
-                new FrameworkPropertyMetadata(typeof(HintForGuideControl)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(GuideHintBase),
+                new FrameworkPropertyMetadata(typeof(GuideHintBase)));
         }
 
-        public HintForGuideControl(FrameworkElement ownerContainer, Point point, FrameworkElement targetControl,
+        public GuideHintBase(FrameworkElement ownerContainer, Point point, FrameworkElement targetControl,
             GuideInfo guide)
         {
-            _ownerContainer = ownerContainer;
+            OwnerContainer = ownerContainer;
             _targetControlPoint = point;
             _targetControl = targetControl;
 
@@ -87,52 +86,56 @@ namespace Dotnet9WPFControls.Controls
             set => SetValue(GridMarginProperty, value);
         }
 
+        public virtual void CloseHint()
+        {
+        }
+
         private void HintUC_Loaded(object sender, RoutedEventArgs e)
         {
             Loaded -= HintUC_Loaded;
-            double leftOfTarget = _targetControlPoint.X - 5;
-            double rightOfTarget = _targetControlPoint.X + _targetControl.ActualWidth + 5;
-            double rightOfOwnerHint = _targetControlPoint.X + ActualWidth + 5;
-            double topOfTarget = _targetControlPoint.Y - 10;
-            double bottomOfTarget = _targetControlPoint.Y + _targetControl.ActualHeight + 10;
-            double bottomOfOwnerHint = _targetControlPoint.Y + ActualHeight - 10;
+            double leftOfTarget = _targetControlPoint.X;
+            double rightOfTarget = _targetControlPoint.X + _targetControl.ActualWidth;
+            double rightOfOwnerHint = _targetControlPoint.X + ActualWidth;
+            double topOfTarget = _targetControlPoint.Y;
+            double bottomOfTarget = _targetControlPoint.Y + _targetControl.ActualHeight;
+            double bottomOfOwnerHint = _targetControlPoint.Y + ActualHeight;
 
             // 1、正常情况：引导框左上角显示在该控件左下角
-            if (leftOfTarget + ActualWidth <= _ownerContainer.ActualWidth &&
-                bottomOfTarget + ActualHeight <= _ownerContainer.ActualHeight)
+            if (leftOfTarget + ActualWidth <= OwnerContainer.ActualWidth &&
+                bottomOfTarget + ActualHeight <= OwnerContainer.ActualHeight)
             {
                 Canvas.SetLeft(this, leftOfTarget);
                 Canvas.SetTop(this, bottomOfTarget);
             }
             // 2、提示框下侧会显示在蒙版外
-            else if (leftOfTarget + ActualWidth <= _ownerContainer.ActualWidth &&
-                     bottomOfTarget + ActualHeight > _ownerContainer.ActualHeight)
+            else if (leftOfTarget + ActualWidth <= OwnerContainer.ActualWidth &&
+                     bottomOfTarget + ActualHeight > OwnerContainer.ActualHeight)
             {
                 Canvas.SetLeft(this, leftOfTarget);
                 Canvas.SetTop(this, topOfTarget - ActualHeight);
 
-                ScaleTransform scaleTransform = new() { ScaleY = -1 };
+                ScaleTransform scaleTransform = new() {ScaleY = -1};
                 _backgroundViewbox!.RenderTransform = scaleTransform;
                 GridMargin = new Thickness(16, 16, 16, 26);
             }
             // 3、提示框右侧会显示在蒙版外
-            else if (leftOfTarget + ActualWidth > _ownerContainer.ActualWidth &&
-                     bottomOfTarget + ActualHeight <= _ownerContainer.ActualHeight)
+            else if (leftOfTarget + ActualWidth > OwnerContainer.ActualWidth &&
+                     bottomOfTarget + ActualHeight <= OwnerContainer.ActualHeight)
             {
                 Canvas.SetLeft(this, rightOfTarget - ActualWidth);
                 Canvas.SetTop(this, bottomOfTarget);
 
-                ScaleTransform scaleTransform = new() { ScaleX = -1 };
+                ScaleTransform scaleTransform = new() {ScaleX = -1};
                 _backgroundViewbox!.RenderTransform = scaleTransform;
             }
             // 4、提示框右侧和下方会显示在蒙版外
-            else if (leftOfTarget + ActualWidth > _ownerContainer.ActualWidth &&
-                     bottomOfTarget + ActualHeight > _ownerContainer.ActualHeight)
+            else if (leftOfTarget + ActualWidth > OwnerContainer.ActualWidth &&
+                     bottomOfTarget + ActualHeight > OwnerContainer.ActualHeight)
             {
                 Canvas.SetLeft(this, rightOfTarget - ActualWidth);
                 Canvas.SetTop(this, topOfTarget - ActualHeight);
 
-                ScaleTransform scaleTransform = new() { ScaleX = -1, ScaleY = -1 };
+                ScaleTransform scaleTransform = new() {ScaleX = -1, ScaleY = -1};
                 _backgroundViewbox!.RenderTransform = scaleTransform;
                 GridMargin = new Thickness(16, 16, 16, 26);
             }
@@ -169,7 +172,7 @@ namespace Dotnet9WPFControls.Controls
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
-            (_ownerContainer as GuideControl)?.HideGuide();
+            CloseHint();
         }
 
         protected override void OnRender(DrawingContext drawingContext)

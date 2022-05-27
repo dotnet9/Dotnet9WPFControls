@@ -73,7 +73,7 @@ namespace Dotnet9WPFControls.Controls
             Point point = targetControl.TransformToAncestor(GetWindow(targetControl)!)
                 .Transform(new Point(0, 0)); //获取控件坐标点
 
-            RectangleGeometry rg = new() { Rect = new Rect(0, 0, Width, Height) };
+            RectangleGeometry rg = new() {Rect = new Rect(0, 0, Width, Height)};
             _borGeometry = Geometry.Combine(_borGeometry, rg, GeometryCombineMode.Union, null);
             _borderBackground!.Clip = _borGeometry;
 
@@ -81,14 +81,14 @@ namespace Dotnet9WPFControls.Controls
             {
                 RadiusX = 3,
                 RadiusY = 3,
-                Rect = new Rect(point.X - 5, point.Y - 5, targetControl.ActualWidth + 10,
-                    targetControl.ActualHeight + 10)
+                Rect = new Rect(point.X, point.Y, targetControl.ActualWidth,
+                    targetControl.ActualHeight)
             };
             _borGeometry = Geometry.Combine(_borGeometry, rg1, GeometryCombineMode.Exclude, null);
 
             _borderBackground.Clip = _borGeometry;
 
-            HintForGuideWindow hit = new HintForGuideWindow(this, point, targetControl, guide);
+            GuideHintForWindow hit = new(this, point, targetControl, guide);
             hit.NextHintEvent -= Hit_NextHintEvent;
             hit.NextHintEvent += Hit_NextHintEvent;
             _canvasHint?.Children.Add(hit);
