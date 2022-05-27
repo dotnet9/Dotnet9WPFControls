@@ -75,10 +75,10 @@
         </Setter>
     </Style>
 
-    <Style x:Key="Styles.Controls.GuideInner" TargetType="{x:Type controls:GuideHintBase}">
+    <Style x:Key="Styles.Controls.GuideHintControl" TargetType="{x:Type controls:GuideHintControl}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type controls:GuideHintBase}">
+                <ControlTemplate TargetType="{x:Type controls:GuideHintControl}">
                     <Grid>
                         <Viewbox
                             x:Name="PART_Background_Viewbox"
@@ -166,8 +166,7 @@
     </Style>
 
     <Style BasedOn="{StaticResource Styles.Controls.GuideOuter}" TargetType="{x:Type controls:GuideWindow}" />
-    <Style BasedOn="{StaticResource Styles.Controls.GuideInner}" TargetType="{x:Type controls:GuideHintForWindow}" />
     <Style BasedOn="{StaticResource Styles.Controls.GuideOuter}" TargetType="{x:Type controls:GuideControl}" />
-    <Style BasedOn="{StaticResource Styles.Controls.GuideInner}" TargetType="{x:Type controls:GuideHintForControl}" />
+    <Style BasedOn="{StaticResource Styles.Controls.GuideHintControl}" TargetType="{x:Type controls:GuideHintControl}" />
 
 </ResourceDictionary>

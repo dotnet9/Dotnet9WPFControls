@@ -28,7 +28,7 @@ namespace Dotnet9WPFControls.Controls
 
         public GuideControl()
         {
-            _guideControlBase = new GuideControlBase(HideGuide, ShowGuideArea, Guides);
+            _guideControlBase = new GuideControlBase(HideGuide, ShowGuide, Guides);
         }
 
         public List<GuideInfo> Guides
@@ -88,10 +88,10 @@ namespace Dotnet9WPFControls.Controls
             }
 
             Visibility = Visibility.Visible;
-            ShowGuideArea(currentGuideInfo.TargetControl, currentGuideInfo);
+            ShowGuide(currentGuideInfo.TargetControl, currentGuideInfo);
         }
 
-        private void ShowGuideArea(FrameworkElement? targetControl, GuideInfo guide)
+        private void ShowGuide(FrameworkElement? targetControl, GuideInfo guide)
         {
             if (targetControl == null)
             {
@@ -105,7 +105,7 @@ namespace Dotnet9WPFControls.Controls
             RectangleGeometry rg = new() {Rect = new Rect(0, 0, container.ActualWidth, container.ActualHeight)};
             _guideControlBase.CombineHint(rg, targetControl, point);
 
-            GuideHintForControl hit = new(this, point, targetControl, guide);
+            GuideHintControl hit = new(this, point, targetControl, guide, HideGuide);
             hit.NextHintEvent -= _guideControlBase.ShowNextHint;
             hit.NextHintEvent += _guideControlBase.ShowNextHint;
             _guideControlBase.CanvasHint?.Children.Add(hit);

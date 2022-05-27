@@ -15,15 +15,15 @@ namespace Dotnet9WPFControls.Controls
 
         public PathGeometry BorGeometry = new();
         public Canvas? CanvasHint;
-
-        public Action CloseHint;
         public int CurrentHintShowIndex;
         public List<GuideInfo> Guides;
+
+        public Action HideGuide;
         public Action<FrameworkElement?, GuideInfo> ShowHint;
 
-        public GuideControlBase(Action closeHint, Action<FrameworkElement?, GuideInfo> showHint, List<GuideInfo> guides)
+        public GuideControlBase(Action hideHint, Action<FrameworkElement?, GuideInfo> showHint, List<GuideInfo> guides)
         {
-            CloseHint = closeHint;
+            HideGuide = hideHint;
             ShowHint = showHint;
             Guides = guides;
         }
@@ -35,7 +35,7 @@ namespace Dotnet9WPFControls.Controls
                 CanvasHint?.Children.Clear();
                 if (CurrentHintShowIndex >= Guides?.Count - 1)
                 {
-                    CloseHint!();
+                    HideGuide!();
                     return;
                 }
 

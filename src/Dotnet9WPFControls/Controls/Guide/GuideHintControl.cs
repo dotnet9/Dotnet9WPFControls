@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -7,7 +8,7 @@ namespace Dotnet9WPFControls.Controls
     [TemplatePart(Name = PartBtnClose, Type = typeof(Button))]
     [TemplatePart(Name = PartBackgroundViewbox, Type = typeof(Viewbox))]
     [TemplatePart(Name = PartBtnNext, Type = typeof(Button))]
-    public class GuideHintBase : Control
+    public class GuideHintControl : Control
     {
         public delegate void NextHintDelegate();
 
@@ -16,19 +17,19 @@ namespace Dotnet9WPFControls.Controls
         private const string PartBtnNext = "PART_Btn_Next";
 
         public static readonly DependencyProperty GridMarginProperty =
-            DependencyProperty.Register(nameof(GridMargin), typeof(Thickness), typeof(GuideHintBase),
+            DependencyProperty.Register(nameof(GridMargin), typeof(Thickness), typeof(GuideHintControl),
                 new PropertyMetadata(new Thickness(16, 26, 16, 16)));
 
         public static readonly DependencyProperty TitleProperty =
-            DependencyProperty.Register(nameof(Title), typeof(string), typeof(GuideHintBase),
+            DependencyProperty.Register(nameof(Title), typeof(string), typeof(GuideHintControl),
                 new PropertyMetadata(null));
 
         public static readonly DependencyProperty ContentProperty =
-            DependencyProperty.Register(nameof(Content), typeof(string), typeof(GuideHintBase),
+            DependencyProperty.Register(nameof(Content), typeof(string), typeof(GuideHintControl),
                 new PropertyMetadata(null));
 
         public static readonly DependencyProperty ButtonContentProperty =
-            DependencyProperty.Register(nameof(ButtonContent), typeof(string), typeof(GuideHintBase),
+            DependencyProperty.Register(nameof(ButtonContent), typeof(string), typeof(GuideHintControl),
                 new PropertyMetadata(""));
 
         private readonly FrameworkElement _targetControl;
@@ -40,17 +41,20 @@ namespace Dotnet9WPFControls.Controls
         private Button? _btnNext;
         private Point _targetControlPoint;
 
-        static GuideHintBase()
+        public Action? CloseHint;
+
+        static GuideHintControl()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(GuideHintBase),
-                new FrameworkPropertyMetadata(typeof(GuideHintBase)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(GuideHintControl),
+                new FrameworkPropertyMetadata(typeof(GuideHintControl)));
         }
 
-        public GuideHintBase(FrameworkElement ownerContainer, Point point, FrameworkElement targetControl,
-            GuideInfo guide)
+        public GuideHintControl(FrameworkElement ownerContainer, Point targetControlPoint,
+            FrameworkElement targetControl,
+            GuideInfo guide, Action closeHint)
         {
             OwnerContainer = ownerContainer;
-            _targetControlPoint = point;
+            _targetControlPoint = targetControlPoint;
             _targetControl = targetControl;
 
             MinWidth = guide.MinWidth;
@@ -58,6 +62,7 @@ namespace Dotnet9WPFControls.Controls
             Title = guide.Title;
             Content = guide.Content;
             ButtonContent = guide.ButtonContent;
+            CloseHint = closeHint;
 
             Loaded += HintUC_Loaded;
         }
@@ -84,10 +89,6 @@ namespace Dotnet9WPFControls.Controls
         {
             get => (Thickness)GetValue(GridMarginProperty);
             set => SetValue(GridMarginProperty, value);
-        }
-
-        public virtual void CloseHint()
-        {
         }
 
         private void HintUC_Loaded(object sender, RoutedEventArgs e)
@@ -172,7 +173,7 @@ namespace Dotnet9WPFControls.Controls
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
-            CloseHint();
+            CloseHint?.Invoke();
         }
 
         protected override void OnRender(DrawingContext drawingContext)

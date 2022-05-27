@@ -22,7 +22,7 @@ namespace Dotnet9WPFControls.Controls
 
         public GuideWindow(Window targetWindow, List<GuideInfo> guides)
         {
-            _guideControlBase = new GuideControlBase(Close, ShowGuideArea, guides);
+            _guideControlBase = new GuideControlBase(Close, ShowGuide, guides);
             WindowStyle = WindowStyle.None;
             AllowsTransparency = true;
             ShowInTaskbar = false;
@@ -43,7 +43,7 @@ namespace Dotnet9WPFControls.Controls
             _guideControlBase.BorderBackground = GetTemplateChild(GuideControlBase.PartBorderBackground) as Border;
             _guideControlBase.CanvasHint = GetTemplateChild(GuideControlBase.PartCanvasHint) as Canvas;
 
-            if (Guides?.Count <= _guideControlBase.CurrentHintShowIndex)
+            if (Guides.Count <= _guideControlBase.CurrentHintShowIndex)
             {
                 return;
             }
@@ -54,11 +54,11 @@ namespace Dotnet9WPFControls.Controls
                 return;
             }
 
-            ShowGuideArea(currentGuideInfo.TargetControl, currentGuideInfo);
+            ShowGuide(currentGuideInfo.TargetControl, currentGuideInfo);
         }
 
 
-        private void ShowGuideArea(FrameworkElement? targetControl, GuideInfo guide)
+        private void ShowGuide(FrameworkElement? targetControl, GuideInfo guide)
         {
             if (targetControl == null)
             {
@@ -71,7 +71,7 @@ namespace Dotnet9WPFControls.Controls
             RectangleGeometry rg = new() {Rect = new Rect(0, 0, Width, Height)};
             _guideControlBase.CombineHint(rg, targetControl, point);
 
-            GuideHintForWindow hit = new(this, point, targetControl, guide);
+            GuideHintControl hit = new(this, point, targetControl, guide, Close);
             hit.NextHintEvent -= _guideControlBase.ShowNextHint;
             hit.NextHintEvent += _guideControlBase.ShowNextHint;
             _guideControlBase.CanvasHint?.Children.Add(hit);
