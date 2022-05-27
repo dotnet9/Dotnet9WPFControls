@@ -6,19 +6,13 @@ using System.Windows.Media;
 // ReSharper disable once CheckNamespace
 namespace Dotnet9WPFControls.Controls
 {
-    [TemplatePart(Name = PartBorrderBackground, Type = typeof(Border))]
-    [TemplatePart(Name = PartCanvasHint, Type = typeof(Canvas))]
+    [TemplatePart(Name = GuideControlBase.PartBorderBackground, Type = typeof(Border))]
+    [TemplatePart(Name = GuideControlBase.PartCanvasHint, Type = typeof(Canvas))]
     public class GuideWindow : Window
     {
-        private const string PartBorrderBackground = "PART_Border_Background";
-        private const string PartCanvasHint = "PART_Canvas_Hint";
-        private readonly List<GuideInfo> _guideInfos;
+        private readonly GuideControlBase _guideControlBase;
 
-        private Border? _borderBackground;
-
-        private PathGeometry _borGeometry = new();
-        private Canvas? _canvasHint;
-        private int _currentHintShowIndex;
+        public List<GuideInfo> Guides;
 
         static GuideWindow()
         {
@@ -26,8 +20,9 @@ namespace Dotnet9WPFControls.Controls
                 new FrameworkPropertyMetadata(typeof(GuideWindow)));
         }
 
-        public GuideWindow(Window targetWindow, List<GuideInfo> guideList)
+        public GuideWindow(Window targetWindow, List<GuideInfo> guides)
         {
+            _guideControlBase = new GuideControlBase(Close, ShowGuideArea, guides);
             WindowStyle = WindowStyle.None;
             AllowsTransparency = true;
             ShowInTaskbar = false;
@@ -38,22 +33,22 @@ namespace Dotnet9WPFControls.Controls
             Left = targetWindow.Left;
             Top = targetWindow.Top;
             Owner = targetWindow;
-            _guideInfos = guideList;
+            Guides = guides;
         }
 
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
 
-            _borderBackground = GetTemplateChild(PartBorrderBackground) as Border;
-            _canvasHint = GetTemplateChild(PartCanvasHint) as Canvas;
+            _guideControlBase.BorderBackground = GetTemplateChild(GuideControlBase.PartBorderBackground) as Border;
+            _guideControlBase.CanvasHint = GetTemplateChild(GuideControlBase.PartCanvasHint) as Canvas;
 
-            if (_guideInfos.Count <= _currentHintShowIndex)
+            if (Guides?.Count <= _guideControlBase.CurrentHintShowIndex)
             {
                 return;
             }
 
-            GuideInfo currentGuideInfo = _guideInfos[_currentHintShowIndex];
+            GuideInfo currentGuideInfo = Guides[_guideControlBase.CurrentHintShowIndex];
             if (currentGuideInfo.TargetControl == null)
             {
                 return;
@@ -74,48 +69,12 @@ namespace Dotnet9WPFControls.Controls
                 .Transform(new Point(0, 0)); //获取控件坐标点
 
             RectangleGeometry rg = new() {Rect = new Rect(0, 0, Width, Height)};
-            _borGeometry = Geometry.Combine(_borGeometry, rg, GeometryCombineMode.Union, null);
-            _borderBackground!.Clip = _borGeometry;
-
-            RectangleGeometry rg1 = new()
-            {
-                RadiusX = 3,
-                RadiusY = 3,
-                Rect = new Rect(point.X, point.Y, targetControl.ActualWidth,
-                    targetControl.ActualHeight)
-            };
-            _borGeometry = Geometry.Combine(_borGeometry, rg1, GeometryCombineMode.Exclude, null);
-
-            _borderBackground.Clip = _borGeometry;
+            _guideControlBase.CombineHint(rg, targetControl, point);
 
             GuideHintForWindow hit = new(this, point, targetControl, guide);
-            hit.NextHintEvent -= Hit_NextHintEvent;
-            hit.NextHintEvent += Hit_NextHintEvent;
-            _canvasHint?.Children.Add(hit);
-        }
-
-        private void Hit_NextHintEvent()
-        {
-            while (true)
-            {
-                _canvasHint?.Children.Clear();
-                if (_currentHintShowIndex >= _guideInfos.Count - 1)
-                {
-                    Close();
-                    return;
-                }
-
-                _currentHintShowIndex++;
-
-                GuideInfo currentGuideInfo = _guideInfos[_currentHintShowIndex];
-                if (currentGuideInfo.TargetControl == null)
-                {
-                    continue;
-                }
-
-                ShowGuideArea(currentGuideInfo.TargetControl, currentGuideInfo);
-                break;
-            }
+            hit.NextHintEvent -= _guideControlBase.ShowNextHint;
+            hit.NextHintEvent += _guideControlBase.ShowNextHint;
+            _guideControlBase.CanvasHint?.Children.Add(hit);
         }
     }
 }
