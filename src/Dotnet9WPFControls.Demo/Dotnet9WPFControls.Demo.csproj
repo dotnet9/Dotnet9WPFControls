@@ -1,36 +1,36 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <Nullable>enable</Nullable>
-    <UseWPF>true</UseWPF>
-	  <PackageIcon>logo.png</PackageIcon>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+		<ApplicationIcon>Resources\favicon.ico</ApplicationIcon>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Images\**" />
-    <EmbeddedResource Remove="Images\**" />
-    <None Remove="Images\**" />
-    <Page Remove="Images\**" />
-  </ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\favicon.ico">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Remove="favicon.ico" />
-    <None Remove="logo.png" />
-  </ItemGroup>
+	<ItemGroup>
+		<Content Include="Resources\favicon.ico" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="MaterialDesignThemes" Version="4.6.0-ci182" />
-    <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="Resources\logo.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Dotnet9WPFControls\Dotnet9WPFControls.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="MaterialDesignThemes" Version="4.6.0-ci182" />
+		<PackageReference Include="Prism.DryIoc" Version="8.1.97" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Resource Include="favicon.ico" />
-    <Resource Include="logo.png" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Dotnet9WPFControls\Dotnet9WPFControls.csproj" />
+	</ItemGroup>
 
 </Project>

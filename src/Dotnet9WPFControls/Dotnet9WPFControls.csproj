@@ -1,27 +1,44 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <Nullable>enable</Nullable>
-    <UseWPF>true</UseWPF>
-	  <Company>Dotnet9.com</Company>
-	  <Authors>沙漠尽头的狼</Authors>
-	  <PackageIcon>logo.png</PackageIcon>
-	  <Version>0.1.0</Version>
-	  <Description>常年积累的一个自定义WPF控件库</Description>
-  </PropertyGroup>
+	<PropertyGroup>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+		<Company>https://dotnet9.com</Company>
+		<Authors>Dotnet9</Authors>
+		<Owners>Dotnet9</Owners>
+		<Version>0.1.0-preview.1</Version>
+		<Description>一个自定义WPF控件库，包含新手引导控件</Description>
+		<ApplicationIcon>Resources\favicon.ico</ApplicationIcon>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Title>$(AssemblyName)</Title>
+		<Copyright>Copyright © Dotnet9 2022</Copyright>
+		<PackageId>Dotnet9WPFControls</PackageId>
+		<PackageTags>C# WPF CustomControl; Newbie gude;</PackageTags>
+		<PackageIcon>logo.png</PackageIcon>
+		<PackageProjectUrl>https://github.com/dotnet9/Dotnet9WPFControls</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/dotnet9/Dotnet9WPFControls</RepositoryUrl>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="favicon.ico" />
-    <None Remove="logo.png" />
-  </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Prism.Core" Version="8.1.97" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Prism.Core" Version="8.1.97" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Resource Include="favicon.ico" />
-    <Resource Include="logo.png" />
-  </ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\favicon.ico">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="Resources\favicon.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="Resources\logo.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
 </Project>

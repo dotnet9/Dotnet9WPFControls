@@ -3,8 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:helpers="clr-namespace:Dotnet9WPFControls.Controls.Helpers;assembly=Dotnet9WPFControls"
-    xmlns:converters="clr-namespace:Dotnet9WPFControls.Converters;assembly=Dotnet9WPFControls"
+    xmlns:dotnet9="https://dotnet9.com"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -18,7 +17,7 @@
     WindowStyle="None"
     mc:Ignorable="d">
     <Window.Resources>
-        <converters:BindControlToGuideConverter x:Key="BindControlToGuideConverter" />
+        <dotnet9:BindControlToGuideConverter x:Key="BindControlToGuideConverter" />
     </Window.Resources>
     <Grid>
         <!--  Grid Background  -->
@@ -79,12 +78,12 @@
                 </StackPanel>
 
                 <Button Style="{StaticResource activeMenuButton}">
-                    <helpers:GuideHelper.GuideInfo>
+                    <dotnet9:GuideHelper.GuideInfo>
                         <MultiBinding Converter="{StaticResource BindControlToGuideConverter}">
                             <Binding RelativeSource="{RelativeSource Self}" />
                             <Binding Path="BtnWalletGuide" />
                         </MultiBinding>
-                    </helpers:GuideHelper.GuideInfo>
+                    </dotnet9:GuideHelper.GuideInfo>
                     <Grid>
                         <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="FolderOutline" Style="{StaticResource buttonIcon}" />
@@ -98,12 +97,12 @@
                 </Button>
 
                 <Button Style="{StaticResource menuButton}">
-                    <helpers:GuideHelper.GuideInfo>
+                    <dotnet9:GuideHelper.GuideInfo>
                         <MultiBinding Converter="{StaticResource BindControlToGuideConverter}">
                             <Binding RelativeSource="{RelativeSource Self}" />
                             <Binding Path="BtnNotifactionGuide" />
                         </MultiBinding>
-                    </helpers:GuideHelper.GuideInfo>
+                    </dotnet9:GuideHelper.GuideInfo>
                     <Grid>
                         <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="BellOutline" Style="{StaticResource buttonIcon}" />
@@ -127,12 +126,12 @@
                 </Button>
 
                 <Button Style="{StaticResource menuButton}">
-                    <helpers:GuideHelper.GuideInfo>
+                    <dotnet9:GuideHelper.GuideInfo>
                         <MultiBinding Converter="{StaticResource BindControlToGuideConverter}">
                             <Binding RelativeSource="{RelativeSource Self}" />
                             <Binding Path="BtnRecordGuide" />
                         </MultiBinding>
-                    </helpers:GuideHelper.GuideInfo>
+                    </dotnet9:GuideHelper.GuideInfo>
                     <Grid>
                         <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Clock" Style="{StaticResource buttonIcon}" />
@@ -188,12 +187,12 @@
                 </Button>
 
                 <Button Click="Close_Click" Style="{StaticResource menuButton}">
-                    <helpers:GuideHelper.GuideInfo>
+                    <dotnet9:GuideHelper.GuideInfo>
                         <MultiBinding Converter="{StaticResource BindControlToGuideConverter}">
                             <Binding RelativeSource="{RelativeSource Self}" />
                             <Binding Path="BtnCloseGuide" />
                         </MultiBinding>
-                    </helpers:GuideHelper.GuideInfo>
+                    </dotnet9:GuideHelper.GuideInfo>
                     <Grid>
                         <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="CircleOutline" Style="{StaticResource buttonIcon}" />
@@ -234,12 +233,12 @@
                             Margin="0,10,0,5"
                             Text="fad23b456g56fsd2sdf4sdj76urdetgx22d"
                             TextAlignment="Center">
-                            <helpers:GuideHelper.GuideInfo>
+                            <dotnet9:GuideHelper.GuideInfo>
                                 <MultiBinding Converter="{StaticResource BindControlToGuideConverter}">
                                     <Binding RelativeSource="{RelativeSource Self}" />
                                     <Binding Path="TxtPayCodeGuide" />
                                 </MultiBinding>
-                            </helpers:GuideHelper.GuideInfo>
+                            </dotnet9:GuideHelper.GuideInfo>
                         </TextBox>
                         <TextBlock
                             Margin="0,0,0,20"
@@ -290,12 +289,12 @@
                         </Grid>
 
                         <Button Style="{StaticResource sendButton}">
-                            <helpers:GuideHelper.GuideInfo>
+                            <dotnet9:GuideHelper.GuideInfo>
                                 <MultiBinding Converter="{StaticResource BindControlToGuideConverter}">
                                     <Binding RelativeSource="{RelativeSource Self}" />
                                     <Binding Path="BtnPayGuide" />
                                 </MultiBinding>
-                            </helpers:GuideHelper.GuideInfo>
+                            </dotnet9:GuideHelper.GuideInfo>
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon
                                     VerticalAlignment="Center"
@@ -313,12 +312,12 @@
 
                 <!--  Bank Card  -->
                 <Border Margin="90,40,90,0" Style="{StaticResource cardBorder}">
-                    <helpers:GuideHelper.GuideInfo>
+                    <dotnet9:GuideHelper.GuideInfo>
                         <MultiBinding Converter="{StaticResource BindControlToGuideConverter}">
                             <Binding RelativeSource="{RelativeSource Self}" />
                             <Binding Path="BorderWalletOverviewGuide" />
                         </MultiBinding>
-                    </helpers:GuideHelper.GuideInfo>
+                    </dotnet9:GuideHelper.GuideInfo>
                     <Border.Background>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                             <GradientStop Offset="-0.2" Color="#D489FF" />
@@ -389,12 +388,12 @@
                         Height="50"
                         Margin="10,0,0,0"
                         Style="{StaticResource topMenuButton}">
-                        <helpers:GuideHelper.GuideInfo>
+                        <dotnet9:GuideHelper.GuideInfo>
                             <MultiBinding Converter="{StaticResource BindControlToGuideConverter}">
                                 <Binding RelativeSource="{RelativeSource Self}" />
                                 <Binding Path="BtnAddFilterGuide" />
                             </MultiBinding>
-                        </helpers:GuideHelper.GuideInfo>
+                        </dotnet9:GuideHelper.GuideInfo>
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Filter" Style="{StaticResource topMenuIcon}" />
                             <TextBlock
@@ -416,18 +415,18 @@
                     <Button
                         x:Name="BtnShowGuide"
                         Margin="10,0,0,0"
-                        Command="helpers:GuideHelper.ShowGuideWindowCommand"
+                        Command="dotnet9:GuideHelper.ShowGuideWindowCommand"
                         CommandParameter="{Binding GuideLists}"
                         Style="{StaticResource topMenuButton}">
-                        <helpers:GuideHelper.GuideInfo>
+                        <dotnet9:GuideHelper.GuideInfo>
                             <MultiBinding Converter="{StaticResource BindControlToGuideConverter}">
                                 <Binding RelativeSource="{RelativeSource Self}" />
                                 <Binding Path="BtnShowGuide" />
                             </MultiBinding>
-                        </helpers:GuideHelper.GuideInfo>
+                        </dotnet9:GuideHelper.GuideInfo>
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Loaded">
-                                <i:InvokeCommandAction Command="helpers:GuideHelper.ShowGuideWindowCommand"
+                                <i:InvokeCommandAction Command="dotnet9:GuideHelper.ShowGuideWindowCommand"
                                                        CommandParameter="{Binding BtnShowGuide}" />
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
@@ -530,12 +529,12 @@
                             HorizontalAlignment="Right"
                             VerticalAlignment="Top"
                             Style="{StaticResource button}">
-                            <helpers:GuideHelper.GuideInfo>
+                            <dotnet9:GuideHelper.GuideInfo>
                                 <MultiBinding Converter="{StaticResource BindControlToGuideConverter}">
                                     <Binding RelativeSource="{RelativeSource Self}" />
                                     <Binding Path="BtnEditInfoGuide" />
                                 </MultiBinding>
-                            </helpers:GuideHelper.GuideInfo>
+                            </dotnet9:GuideHelper.GuideInfo>
                             <materialDesign:PackIcon
                                 Width="14"
                                 Height="14"
@@ -582,12 +581,12 @@
 
                 <!--  Security Card  -->
                 <Border Margin="20,0,20,0" Style="{StaticResource border}">
-                    <helpers:GuideHelper.GuideInfo>
+                    <dotnet9:GuideHelper.GuideInfo>
                         <MultiBinding Converter="{StaticResource BindControlToGuideConverter}">
                             <Binding RelativeSource="{RelativeSource Self}" />
                             <Binding Path="BorderSecurityGuide" />
                         </MultiBinding>
-                    </helpers:GuideHelper.GuideInfo>
+                    </dotnet9:GuideHelper.GuideInfo>
                     <Grid Margin="15,10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" />
