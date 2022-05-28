@@ -6,7 +6,7 @@
 		<Company>https://dotnet9.com</Company>
 		<Authors>Dotnet9</Authors>
 		<Owners>Dotnet9</Owners>
-		<Version>0.1.0-preview.1</Version>
+		<Version>0.1.0-preview.2</Version>
 		<Description>一个自定义WPF控件库，包含新手引导控件</Description>
 		<ApplicationIcon>Resources\favicon.ico</ApplicationIcon>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>

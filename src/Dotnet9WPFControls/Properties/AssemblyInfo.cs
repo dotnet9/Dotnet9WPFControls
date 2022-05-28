@@ -1,5 +1,10 @@
 using System.Runtime.InteropServices;
 using System.Windows.Markup;
+[assembly: XmlnsPrefix("https://dotnet9.com", "dotnet9")]
+[assembly: XmlnsDefinition("https://dotnet9.com", "Dotnet9WPFControls")]
+[assembly: XmlnsDefinition("https://dotnet9.com", "Dotnet9WPFControls.Controls")]
+[assembly: XmlnsDefinition("https://dotnet9.com", "Dotnet9WPFControls.Converters")]
+[assembly: XmlnsDefinition("https://dotnet9.com", "Dotnet9WPFControls.Helpers")]
 
 // 在此类的 SDK 样式项目中，现在，在此文件中早前定义的几个程序集属性将在生成期间自动添加，并使用在项目属性中定义的值进行填充。有关包含的属性以及如何定制此过程的详细信息，请参阅
 // https://aka.ms/assembly-info-properties
@@ -13,8 +18,3 @@ using System.Windows.Markup;
 // 如果此项目向 COM 公开，则下列 GUID 用于 typelib 的 ID。
 
 [assembly: Guid("27aa0ca4-9459-494a-807b-53deab3c648c")]
-[assembly: XmlnsPrefix("https://dotnet9.com", "dotnet9")]
-[assembly: XmlnsDefinition("https://dotnet9.com", "Dotnet9WPFControls")]
-[assembly: XmlnsDefinition("https://dotnet9.com", "Dotnet9WPFControls.Controls")]
-[assembly: XmlnsDefinition("https://dotnet9.com", "Dotnet9WPFControls.Converters")]
-[assembly: XmlnsDefinition("https://dotnet9.com", "Dotnet9WPFControls.Controls.Helpers")]

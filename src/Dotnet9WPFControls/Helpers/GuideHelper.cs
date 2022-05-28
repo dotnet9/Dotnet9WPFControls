@@ -1,10 +1,11 @@
-﻿using Prism.Commands;
+﻿using Dotnet9WPFControls.Controls;
+using Prism.Commands;
 using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
 
-namespace Dotnet9WPFControls.Controls.Helpers
+namespace Dotnet9WPFControls.Helpers
 {
     public static class GuideHelper
     {
