@@ -79,7 +79,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:GuideHintControl}">
-                    <Grid>
+                    <Grid Width="270" MinHeight="127">
                         <Viewbox
                             x:Name="PART_Background_Viewbox"
                             RenderTransformOrigin="0.5,0.5"
@@ -113,52 +113,61 @@
                                 </Path>
                             </Grid>
                         </Viewbox>
-                        <Grid Margin="{TemplateBinding GridMargin}">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="30" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
+                        <Border Padding="{TemplateBinding GridMargin}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
 
-                            <TextBlock
-                                x:Name="PART_Tb_Title"
-                                Grid.Row="0"
-                                FontSize="16"
-                                FontWeight="Bold"
-                                Foreground="Black"
-                                Text="{TemplateBinding Title}" />
+                                <TextBlock
+                                    x:Name="PART_Tb_Title"
+                                    Grid.Row="0"
+                                    Margin="0,0,15,0"
+                                    FontSize="16"
+                                    FontWeight="Bold"
+                                    Foreground="Black"
+                                    LineHeight="16"
+                                    Text="{TemplateBinding Title}"
+                                    TextWrapping="Wrap" />
 
-                            <Button
-                                x:Name="PART_Btn_Close"
-                                Grid.Row="0"
-                                Width="20"
-                                Height="20"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Top"
-                                Content="×"
-                                FontSize="16"
-                                IsCancel="True"
-                                Style="{StaticResource CloseButtonStyle}" />
+                                <Button
+                                    x:Name="PART_Btn_Close"
+                                    Grid.Row="0"
+                                    Width="20"
+                                    Height="20"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    Content="×"
+                                    FontSize="18"
+                                    FontWeight="Medium"
+                                    IsCancel="True"
+                                    Style="{StaticResource CloseButtonStyle}" />
 
-                            <TextBlock
-                                x:Name="PART_Tb_Content"
-                                Grid.Row="1"
-                                FontSize="14"
-                                Foreground="#aaa"
-                                Text="{TemplateBinding Content}"
-                                TextWrapping="Wrap" />
+                                <TextBlock
+                                    x:Name="PART_Tb_Content"
+                                    Grid.Row="1"
+                                    Margin="0,8,0,16"
+                                    FontSize="14"
+                                    FontWeight="Regular"
+                                    Foreground="#aaa"
+                                    LineHeight="16"
+                                    Text="{TemplateBinding Content}"
+                                    TextWrapping="Wrap" />
 
-                            <Button
-                                x:Name="PART_Btn_Next"
-                                Grid.Row="2"
-                                MinWidth="75"
-                                MinHeight="30"
-                                Margin="0,20,0,0"
-                                HorizontalAlignment="Right"
-                                Content="{TemplateBinding ButtonContent}"
-                                IsDefault="True"
-                                Style="{DynamicResource MainButtonStyle}" />
-                        </Grid>
+                                <Button
+                                    x:Name="PART_Btn_Next"
+                                    Grid.Row="2"
+                                    MinWidth="75"
+                                    MinHeight="30"
+                                    Margin="0,20,0,0"
+                                    HorizontalAlignment="Right"
+                                    Content="{TemplateBinding ButtonContent}"
+                                    IsDefault="True"
+                                    Style="{DynamicResource MainButtonStyle}" />
+                            </Grid>
+                        </Border>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

@@ -22,7 +22,7 @@ namespace Dotnet9WPFControls.Demo.ViewModels
             _btnCloseGuide ??= new GuideInfo("关闭点这里", "不使用了点击这里关闭窗体");
 
         public GuideInfo BtnShowGuide =>
-            _btnShowGuide ??= new GuideInfo("不会用？", "点击这个按钮显示引导");
+            _btnShowGuide ??= new GuideInfo("不会用？点击这里吧，可以查看引导在窗体不同位置的显示", "窗体的4个角、中间展示引导提示信息，标题或者描述较长以换行的形式展示");
 
         public GuideInfo BtnLeftTopGuide =>
             _btnLeftTopGuide ??= new GuideInfo("左上引导", "测试左上引导提示显示位置");
