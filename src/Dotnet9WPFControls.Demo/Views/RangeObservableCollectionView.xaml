@@ -1,0 +1,27 @@
+﻿<Window x:Class="Dotnet9WPFControls.Demo.Views.RangeObservableCollectionView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:prism="http://prismlibrary.com/"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        mc:Ignorable="d"
+        Title="RangeObservableCollectionView" Height="450" Width="800">
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="测试添加数据量（条）："></TextBlock>
+            <TextBox Width="100" Text="{Binding AddRangeCount}"></TextBox>
+            <Button Content="Add" Command="{Binding AddOneByOneDatasCommand}"></Button>
+            <Button Content="AddRange" Command="{Binding AddRangeDatasCommand}"></Button>
+            <Button Content="Clear" Command="{Binding ClearDatasCommand}"></Button>
+        </StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ListBox Grid.Column="0" ItemsSource="{Binding TestDatas}"></ListBox>
+            <ListBox Grid.Column="1" ItemsSource="{Binding TestLogs}"></ListBox>
+        </Grid>
+    </StackPanel>
+</Window>

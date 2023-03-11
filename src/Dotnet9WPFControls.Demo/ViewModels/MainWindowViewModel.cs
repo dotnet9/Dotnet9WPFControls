@@ -9,31 +9,20 @@ namespace Dotnet9WPFControls.Demo.ViewModels
     {
         private ICommand? _showGuideControlCommand;
         private ICommand? _showGuideWindowCommand;
+        private ICommand? _showRangeObservableCollectionCommand;
         private ICommand? _showShowWrapPanelWithFillCommand;
 
         public ICommand ShowGuideWindowCommand =>
-            _showGuideWindowCommand ??= new DelegateCommand(ExecuteShowGuideWindowCommand);
+            _showGuideWindowCommand ??= new DelegateCommand(() => new GuideWindowView().Show());
 
         public ICommand ShowGuideControlCommand =>
-            _showGuideControlCommand ??= new DelegateCommand(ExecuteShowGuideControlCommand);
+            _showGuideControlCommand ??= new DelegateCommand(() => new GuideControlView().Show());
 
         public ICommand ShowWrapPanelWithFillCommand =>
-            _showShowWrapPanelWithFillCommand ??= new DelegateCommand(ExecuteShowWrapPanelWithFillCommand);
+            _showShowWrapPanelWithFillCommand ??= new DelegateCommand(() => new WrapPanelWithFillView().Show());
 
-
-        private void ExecuteShowGuideWindowCommand()
-        {
-            new GuideWindowView().Show();
-        }
-
-        private void ExecuteShowGuideControlCommand()
-        {
-            new GuideControlView().Show();
-        }
-
-        private void ExecuteShowWrapPanelWithFillCommand()
-        {
-            new WrapPanelWithFillView().Show();
-        }
+        public ICommand ShowRangeObservableCollectionCommand =>
+            _showRangeObservableCollectionCommand ??=
+                new DelegateCommand(() => new RangeObservableCollectionView().Show());
     }
 }
