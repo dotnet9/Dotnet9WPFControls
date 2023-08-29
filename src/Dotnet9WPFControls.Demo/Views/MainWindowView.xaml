@@ -24,6 +24,10 @@
     </Window.Resources>
     <StackPanel>
         <Button
+            Command="{Binding ShowEnumGroupWindowCommand}"
+            Content="显示枚举单选组"
+            Style="{StaticResource Styles.ButtonDemo}" />
+        <Button
             Command="{Binding ShowGuideWindowCommand}"
             Content="显示弹窗式引导"
             Style="{StaticResource Styles.ButtonDemo}" />

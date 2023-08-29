@@ -7,10 +7,14 @@ namespace Dotnet9WPFControls.Demo.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {
+        private ICommand? _showEnumGroupWindowCommand;
         private ICommand? _showGuideControlCommand;
         private ICommand? _showGuideWindowCommand;
         private ICommand? _showRangeObservableCollectionCommand;
         private ICommand? _showShowWrapPanelWithFillCommand;
+
+        public ICommand ShowEnumGroupWindowCommand =>
+            _showEnumGroupWindowCommand ??= new DelegateCommand(() => new EnumRadioGroupWindow().Show());
 
         public ICommand ShowGuideWindowCommand =>
             _showGuideWindowCommand ??= new DelegateCommand(() => new GuideWindowView().Show());
