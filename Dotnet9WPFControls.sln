@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32505.426
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dotnet9WPFControls", "Dotnet9WPFControls\Dotnet9WPFControls.csproj", "{AB285186-AFDD-43AB-BFE8-1D77659B40BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dotnet9WPFControls", "src\Dotnet9WPFControls\Dotnet9WPFControls.csproj", "{AB285186-AFDD-43AB-BFE8-1D77659B40BF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dotnet9WPFControls.Demo", "Dotnet9WPFControls.Demo\Dotnet9WPFControls.Demo.csproj", "{F1F7FCBC-463C-43B8-9C89-C628B6C68DC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dotnet9WPFControls.Demo", "src\Dotnet9WPFControls.Demo\Dotnet9WPFControls.Demo.csproj", "{F1F7FCBC-463C-43B8-9C89-C628B6C68DC9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A7D0342C-7B0E-4221-A284-C258F2522A61}"
 	ProjectSection(SolutionItems) = preProject
@@ -13,7 +13,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dotnet9WPFControls.Test", "Dotnet9WPFControls.Test\Dotnet9WPFControls.Test.csproj", "{76CEB1B2-DDA6-464D-8549-0F9F7C84E83B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dotnet9WPFControls.Test", "src\Dotnet9WPFControls.Test\Dotnet9WPFControls.Test.csproj", "{76CEB1B2-DDA6-464D-8549-0F9F7C84E83B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{DEFFDB93-BD20-4D07-A99F-2315BF2650F7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demos", "demos", "{B34CD6CD-4AC5-4DB7-A0AE-7D151DCB2651}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{EF4DDFCE-A004-4422-8383-1FAD8286902D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +42,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AB285186-AFDD-43AB-BFE8-1D77659B40BF} = {DEFFDB93-BD20-4D07-A99F-2315BF2650F7}
+		{F1F7FCBC-463C-43B8-9C89-C628B6C68DC9} = {B34CD6CD-4AC5-4DB7-A0AE-7D151DCB2651}
+		{76CEB1B2-DDA6-464D-8549-0F9F7C84E83B} = {EF4DDFCE-A004-4422-8383-1FAD8286902D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {881CB968-A56F-4CA7-855F-E7FDB7D31653}

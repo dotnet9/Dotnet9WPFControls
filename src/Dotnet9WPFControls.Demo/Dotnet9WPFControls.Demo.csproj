@@ -25,7 +25,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="MaterialDesignThemes" Version="4.6.0-ci182" />
+		<PackageReference Include="MaterialDesignThemes" Version="5.1.1-ci753" />
 		<PackageReference Include="Prism.DryIoc" Version="8.1.97" />
 	</ItemGroup>
 

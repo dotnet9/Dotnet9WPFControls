@@ -17,6 +17,7 @@
 		<PackageIcon>logo.png</PackageIcon>
 		<PackageProjectUrl>https://github.com/dotnet9/Dotnet9WPFControls</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/dotnet9/Dotnet9WPFControls</RepositoryUrl>
+		<TargetFrameworks>net6.0-windows;net7.0-windows;net8.0-windows;net9.0-windows;</TargetFrameworks>
 	</PropertyGroup>
 
 
